@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import Home from './Home/Home';
+import Registration from './Registration/Registration'; // Import the Registration component
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* Add other routes here */}
+        <Route path="/register" element={<Registration />} />
       </Routes>
       <Footer />
     </Router>
