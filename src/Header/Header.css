@@ -1,0 +1,73 @@
+/* Header styling */
+.header {
+    background-color: #007bff; /* Blue background */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode Icon */
+.dark-mode-toggle {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.dark-mode-icon {
+    color: white;
+    font-size: 24px;
+}
+
+/* User Profile */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-name {
+    font-size: 18px;
+    color: white;
+}

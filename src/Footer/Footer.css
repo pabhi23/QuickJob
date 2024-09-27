@@ -1,0 +1,15 @@
+/* Footer styling */
+.footer {
+    background-color: #007bff; /* Same blue color as the header */
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+.footer p {
+    margin: 0;
+}
