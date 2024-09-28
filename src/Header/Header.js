@@ -19,6 +19,7 @@ const Header = () => {
         <h1 className="logo" onClick={handleLogoClick}>QuickJob</h1>
         <nav className="navbar">
           <Link to="/register" className="nav-link">Register</Link>
+          <Link to="/login" className="nav-link">Login</Link>
         </nav>
         <div className="user-info">
           <div className="dark-mode-toggle">
