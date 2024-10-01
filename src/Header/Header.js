@@ -2,6 +2,7 @@ import React from 'react';
 import './Header.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaMoon } from 'react-icons/fa'; // Dark mode icon
+import logo from '../Img/Logo.png'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -16,7 +17,13 @@ const Header = () => {
   return (
     <header className="header">
       <div className="navbar-container">
-        <h1 className="logo" onClick={handleLogoClick}>QuickJob</h1>
+      <img 
+          src={logo} 
+          alt="QuickJob Logo" 
+          className="logo" 
+          onClick={handleLogoClick} 
+          style={{ cursor: 'pointer' }}
+        />
         <nav className="navbar">
           <Link to="/register" className="nav-link">Register</Link>
           <Link to="/login" className="nav-link">Login</Link>
