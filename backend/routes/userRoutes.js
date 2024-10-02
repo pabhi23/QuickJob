@@ -1,12 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const db = require('../config/db'); 
+const db = require('../config/db');
 const router = express.Router();
 
 router.post('/register', (req, res) => {
     const { firstName, lastName, email, password, userType } = req.body;
 
-    console.log('Received data:', req.body); 
+    console.log('Received data:', req.body);
 
     if (!firstName || !lastName || !email || !password || !userType) {
         return res.status(400).json({ error: 'All fields are required' });
@@ -26,6 +26,54 @@ router.post('/register', (req, res) => {
             }
             console.log('User registered with ID:', result.insertId);
             return res.status(201).json({ message: 'User registered successfully!' });
+        });
+    });
+});
+
+// Login route
+router.post("/login", (req, res) => {
+    const { email, password } = req.body;
+
+    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: "Server error" });
+        }
+
+        if (results.length === 0) {
+            return res.status(400).json({ error: "Invalid email or password" });
+        }
+
+        const user = results[0];
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passwordMatch) {
+            return res.status(400).json({ error: "Invalid email or password" });
+        }
+        res.status(200).json({ message: "Login successful" });
+    });
+});
+
+router.post("/forget-password", async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: "Server error" });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ error: "Email does not exist" });
+        }
+
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+        db.query("UPDATE users SET password = ? WHERE email = ?", [hashedPassword, email], (err, result) => {
+            if (err) {
+                return res.status(500).json({ error: "Server error" });
+            }
+
+            res.status(200).json({ message: "Password updated successfully" });
         });
     });
 });

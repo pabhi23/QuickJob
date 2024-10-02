@@ -5,10 +5,24 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
-  const handleUpdatePassword = (e) => {
+  const handleUpdatePassword = async (e) => {
     e.preventDefault();
-    // Handle update password logic here
-    console.log("Password updated for", { email, newPassword });
+
+    const response = await fetch("http://localhost:5000/api/forget-password", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, newPassword }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message); 
+    } else {
+      alert(data.error);
+    }
   };
 
   return (
