@@ -21,6 +21,10 @@ const LoginPage = () => {
     const data = await response.json();
 
     if (response.ok) {
+      sessionStorage.setItem("firstName", data.firstName);
+      sessionStorage.setItem("lastName", data.lastName);
+      sessionStorage.setItem("registerAs", data.registerAs);
+
       alert("Login successful");
       navigate("/"); 
     } else {

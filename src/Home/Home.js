@@ -1,6 +1,6 @@
 import React from 'react';
 import './Home.css';
-import companyLogos from './companyLogos'; // Assume an array of company logo URLs for the carousel
+import companyLogos from './companyLogos'; 
 
 const Home = () => {
   return (
