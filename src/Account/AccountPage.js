@@ -58,6 +58,16 @@ const AccountPage = () => {
       required
     />
   </div>
+  <div className="form-group">
+  <label htmlFor="resume">Resume</label>
+  <input
+    type="file"
+    id="resume"
+    onChange={(e) => setResume(e.target.files[0])} 
+    accept=".pdf,.doc,.docx"  
+  />
+</div>
+<button type="submit" className="update-button">Update</button>
 </form>
       </div>
     </div>
