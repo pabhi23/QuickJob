@@ -18,3 +18,12 @@ Pressing Ctrl + C in the terminal stops the running process, such as the React d
 ### npm init -y
 It Sets up a new Node.js project in the current folder by creating a package.json file with basic settings. The -y option means that we agree to the default choices without having to answer any questions.
 
+### npm install express mysql dotenv
+Installs three packages: Express, a web framework for building server applications; MySQL, a database driver for connecting to MySQL databases; and dotenv, a package for loading environment variables from a .env file into the application. This setup is essential for building a backend for QuickJob project.
+
+### node server.js
+ Runs the server.js file using Node.js, starting the server for your backend application.
+
+### npm install cors
+Installs the CORS (Cross-Origin Resource Sharing) middleware package. It allows your server to handle requests from different origins, enabling QuickJob app's frontend to communicate with the backend even if they're hosted on different domains.
+
