@@ -43,3 +43,16 @@
     background-color: #0056b3;
   }
   
+  .forgot-password {
+    margin-top: 15px;
+  }
+  
+  .forgot-password a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
