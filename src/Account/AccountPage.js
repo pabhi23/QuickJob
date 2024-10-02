@@ -8,6 +8,17 @@ const AccountPage = () => {
   const [email, setEmail] = useState('');   
   const [resume, setResume] = useState(null);  
   
+  const handleSubmit = (e) => {
+    e.preventDefault(); 
+    console.log({
+      firstName,
+      lastName,
+      contactNumber,
+      email,
+      resume,
+    });
+  };
+  
   return (
     <div className="account-page">
       <div className="profile-container">
