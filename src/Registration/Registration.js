@@ -2,16 +2,37 @@ import React, { useState } from 'react';
 import './Registration.css';
 
 const Registration = () => {
-  const [userType, setUserType] = useState('employee'); // Default to employee
+  const [userType, setUserType] = useState('employee');
 
   const handleUserTypeChange = (e) => {
     setUserType(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log("User Type:", userType);
+
+    const firstName = e.target.firstName.value;
+    const lastName = e.target.lastName.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const response = await fetch('http://localhost:5000/api/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ firstName, lastName, email, password, userType }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert(data.message); 
+      e.target.reset();
+      setUserType('employee');
+    } else {
+      alert(data.error);
+    }
   };
 
   return (
