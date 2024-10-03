@@ -20,6 +20,7 @@ The Application Runs on **localhost:3000**
 
 ## MySQL workbench setup in your local system
 • Open the db_backup file from the repo & then execute the .sql file in your MySQL workbench
+
 • In .env file of backend change the login credentials to yours
 
 ### npx create-react-app QuickJob
