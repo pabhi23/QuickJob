@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaMoon } from "react-icons/fa";
 import logo from '../img/quickJobLogo.png';
 
+
 const Header = () => {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
@@ -26,6 +27,7 @@ const Header = () => {
     <header className="header">
       <div className="navbar-container">
       <img className="logo" src={logo}  alt="QuickJob Logo" onClick={handleLogoClick} />
+
         <nav className="navbar">
           <Link to="/register" className="nav-link">Register</Link>
           <Link to="/login" className="nav-link">Login</Link>
