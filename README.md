@@ -3,18 +3,6 @@
 ## Purpose of this project
 QuickJob project is an online platform that connects employers and job seekers, allowing employees to search for jobs and apply, while enabling employers to post job requirements and manage applicants efficiently.
 
-## Prerequisites
-
-### Install Node JS
-Refer to https://nodejs.org/en/ to install nodejs
-
-### Install create-react-app
-Install create-react-app npm package globally. This will help to easily run the project and also build the source files easily. Use the following command to install create-react-app
-
-```bash
-npm install -g create-react-app
-```
-
 ## Cloning and Running the Application in local
 Clone the project into local
 
