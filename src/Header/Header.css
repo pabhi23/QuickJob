@@ -1,6 +1,5 @@
-/* Header styling */
 .header {
-    background-color: #007bff; /* Blue background */
+    background-color: #007bff;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -16,10 +15,7 @@
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    width: 200px;
+    width: 100px;
     height: auto;
 }
 

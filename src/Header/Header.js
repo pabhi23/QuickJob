@@ -1,15 +1,24 @@
-import React from 'react';
-import './Header.css';
-import { useNavigate, Link } from 'react-router-dom';
-import { FaMoon } from 'react-icons/fa'; // Dark mode icon
-import logo from '../Img/Logo.png'
+import React, { useEffect, useState } from "react";
+import "./Header.css";
+import { useNavigate, Link } from "react-router-dom";
+import { FaMoon } from "react-icons/fa";
+import logo from '../img/quickJobLogo.png';
+
 
 const Header = () => {
   const navigate = useNavigate();
-  const userName = "Abhi Patel"; 
+  const [userName, setUserName] = useState("");
   const userPhoto = "https://via.placeholder.com/40"; 
 
-  // Function to navigate to the home page
+  useEffect(() => {
+    const firstName = sessionStorage.getItem("firstName");
+    const lastName = sessionStorage.getItem("lastName");
+
+    if (firstName && lastName) {
+      setUserName(`${firstName} ${lastName}`);
+    }
+  }, []);
+
   const handleLogoClick = () => {
     navigate('/');
   };
@@ -17,13 +26,8 @@ const Header = () => {
   return (
     <header className="header">
       <div className="navbar-container">
-      <img 
-          src={logo} 
-          alt="QuickJob Logo" 
-          className="logo" 
-          onClick={handleLogoClick} 
-          style={{ cursor: 'pointer' }}
-        />
+      <img className="logo" src={logo}  alt="QuickJob Logo" onClick={handleLogoClick} />
+
         <nav className="navbar">
           <Link to="/register" className="nav-link">Register</Link>
           <Link to="/login" className="nav-link">Login</Link>
@@ -34,7 +38,7 @@ const Header = () => {
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
-            <span className="user-name">{userName}</span>
+            <span className="user-name">{userName || "Guest"}</span>
           </div>
         </div>
       </div>

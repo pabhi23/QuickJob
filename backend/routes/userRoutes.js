@@ -31,27 +31,32 @@ router.post('/register', (req, res) => {
 });
 
 // Login route
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
     const { email, password } = req.body;
-
+  
     db.query("SELECT * FROM users WHERE email = ?", [email], async (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: "Server error" });
-        }
-
-        if (results.length === 0) {
-            return res.status(400).json({ error: "Invalid email or password" });
-        }
-
-        const user = results[0];
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (!passwordMatch) {
-            return res.status(400).json({ error: "Invalid email or password" });
-        }
-        res.status(200).json({ message: "Login successful" });
+      if (err) {
+        return res.status(500).json({ error: "Server error" });
+      }
+  
+      if (results.length === 0) {
+        return res.status(401).json({ error: "Invalid email or password" });
+      }
+  
+      const user = results[0];
+      const isPasswordValid = await bcrypt.compare(password, user.password);
+  
+      if (!isPasswordValid) {
+        return res.status(401).json({ error: "Invalid email or password" });
+      }
+  
+      res.json({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        registerAs: user.registerAs,
+      });
     });
-});
+  });
 
 router.post("/forget-password", async (req, res) => {
     const { email, newPassword } = req.body;
