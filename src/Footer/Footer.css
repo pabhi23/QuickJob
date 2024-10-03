@@ -4,12 +4,28 @@
     color: white;
     text-align: center;
     padding: 15px 0;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     font-size: 16px;
+    position: relative; /* Changed from 'fixed' to 'relative' */
+    bottom: 0;
 }
 
 .footer p {
     margin: 0;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 600px) {
+    .footer {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+/* Responsive adjustments for very small screens */
+@media (max-width: 400px) {
+    .footer {
+        font-size: 12px;
+        padding: 8px 0;
+    }
 }

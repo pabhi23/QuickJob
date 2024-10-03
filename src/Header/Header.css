@@ -1,28 +1,27 @@
 /* Header styling */
 .header {
-    background-color: #007bff; /* Blue background */
+    background-color: #007bff;
     padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     color: white;
+    position: relative; /* Make sure header is positioned relative for navbar positioning */
+    z-index: 1;
 }
 
+/* Navbar Container */
 .navbar-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
+    justify-content: space-between;
 }
 
+/* Logo styling */
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    width: 200px;
+    max-width: 150px;
     height: auto;
+    cursor: pointer;
 }
 
+/* Navbar styling */
 .navbar {
     display: flex;
     gap: 20px;
@@ -38,9 +37,22 @@
     text-decoration: underline;
 }
 
+/* User Menu */
+.user-menu {
+    display: flex;
+    align-items: center;
+}
+
+/* User Info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 20px;
+}
+
 /* Dark Mode Icon */
 .dark-mode-toggle {
-    margin-right: 20px;
     cursor: pointer;
 }
 
@@ -50,12 +62,6 @@
 }
 
 /* User Profile */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 .user-profile {
     display: flex;
     align-items: center;
@@ -71,4 +77,46 @@
 .user-name {
     font-size: 18px;
     color: white;
+}
+
+/* Menu Icon */
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    font-size: 24px;
+    color: white;
+}
+
+/* Responsive adjustments for small screens */
+@media (max-width: 768px) {
+    .navbar {
+        position: absolute;
+        top: 60px; /* Adjust based on your header height */
+        left: 0;
+        right: 0;
+        background-color: #007bff;
+        flex-direction: column;
+        align-items: center;
+        visibility: hidden; /* Use visibility instead of display */
+        opacity: 0; /* Hidden by default */
+        transition: visibility 0s, opacity 0.3s ease-in-out;
+        z-index: 999; /* Ensure it's on top */
+        padding: 10px 0;
+    }
+
+    .navbar.active {
+        visibility: visible;
+        opacity: 1; /* Make it visible */
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .user-info {
+        display: none;
+    }
 }
