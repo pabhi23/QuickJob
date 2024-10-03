@@ -23,6 +23,8 @@ The Application Runs on **localhost:3000**
 
 • In .env file of backend change the login credentials to yours
 
+## Commonly Used commands
+
 ### npx create-react-app QuickJob
 npx create-react-app QuickJob, quickly set up a new React application called "QuickJob" with a pre-configured environment. It automatically generates the necessary files and folder structure to begin developing a React project.
 
