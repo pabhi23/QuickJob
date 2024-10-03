@@ -4,6 +4,7 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import logo from '../img/quickJobLogo.png';
 
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation(); 
