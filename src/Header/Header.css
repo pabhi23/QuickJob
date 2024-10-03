@@ -12,11 +12,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    z-index: 999;
 }
 
 .logo {
     width: 100px;
     height: auto;
+    cursor: pointer;
 }
 
 .navbar {
@@ -34,7 +36,12 @@
     text-decoration: underline;
 }
 
-/* Dark Mode Icon */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .dark-mode-toggle {
     margin-right: 20px;
     cursor: pointer;
@@ -43,13 +50,6 @@
 .dark-mode-icon {
     color: white;
     font-size: 24px;
-}
-
-/* User Profile */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
 .user-profile {
@@ -67,4 +67,41 @@
 .user-name {
     font-size: 18px;
     color: white;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    font-size: 24px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: absolute;
+        top: 45px;
+        left: 0;
+        right: 0;
+        background-color: #007bff;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .user-info {
+        display: none;
+    }
 }

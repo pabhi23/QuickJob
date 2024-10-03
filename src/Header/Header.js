@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
-import { useNavigate, Link } from "react-router-dom";
-import { FaMoon } from "react-icons/fa";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import logo from '../img/quickJobLogo.png';
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation(); 
   const [userName, setUserName] = useState("");
-  const userPhoto = "https://via.placeholder.com/40"; 
+  const [menuOpen, setMenuOpen] = useState(false); 
+  const userPhoto = "https://via.placeholder.com/40";
 
   useEffect(() => {
     const firstName = sessionStorage.getItem("firstName");
@@ -18,17 +20,28 @@ const Header = () => {
     }
   }, []);
 
+  useEffect(() => {
+    setMenuOpen(false); 
+  }, [location]);
+
   const handleLogoClick = () => {
     navigate('/');
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
   };
 
   return (
     <header className="header">
       <div className="navbar-container">
-      <img className="logo" src={logo}  alt="QuickJob Logo" onClick={handleLogoClick} />
-        <nav className="navbar">
-          <Link to="/register" className="nav-link">Register</Link>
-          <Link to="/login" className="nav-link">Login</Link>
+        <img className="logo" src={logo} alt="QuickJob Logo" onClick={handleLogoClick} />
+        <div className="menu-icon" onClick={toggleMenu}>
+          {menuOpen ? <FaTimes className="hamburger-icon" /> : <FaBars className="hamburger-icon" />}
+        </div>
+        <nav className={`navbar ${menuOpen ? 'active' : ''}`}>
+          <Link to="/register" className="nav-link" onClick={() => setMenuOpen(false)}>Register</Link>
+          <Link to="/login" className="nav-link" onClick={() => setMenuOpen(false)}>Login</Link>
         </nav>
         <div className="user-info">
           <div className="dark-mode-toggle">

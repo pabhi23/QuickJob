@@ -2,25 +2,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
-    background-color: #f0f0f0; 
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .registration-form {
-    background-color: white; 
-    padding: 20px;
+    background-color: white;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-    width: 300px; 
-    text-align: center; 
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
 }
 
-h2 {
+.registration-form h2 {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .form-group {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
@@ -28,9 +34,9 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -42,21 +48,19 @@ input[type="radio"] {
 }
 
 .radio-group {
-    display: flex;
-    flex-direction: column; 
-    align-items: center; 
+    margin-bottom: 15px;
 }
 
 .radio-buttons {
-    display: flex; 
-    justify-content: center; 
-    gap: 10px; 
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .register-button {
     width: 100%;
-    padding: 10px;
-    background-color: #007bff; 
+    padding: 12px 20px;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 4px;
@@ -64,5 +68,47 @@ input[type="radio"] {
 }
 
 .register-button:hover {
-    background-color: #0056b3; 
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 600px) {
+    .registration-form {
+        padding: 20px;
+    }
+
+    .registration-form h2 {
+        font-size: 20px;
+    }
+
+    .registration-form input[type="text"],
+    .registration-form input[type="email"],
+    .registration-form input[type="password"] {
+        padding: 8px;
+    }
+
+    .register-button {
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .registration-form {
+        padding: 15px;
+    }
+
+    .registration-form h2 {
+        font-size: 18px;
+    }
+
+    .registration-form input[type="text"],
+    .registration-form input[type="email"],
+    .registration-form input[type="password"] {
+        padding: 7px;
+    }
+
+    .register-button {
+        padding: 8px;
+    }
 }
