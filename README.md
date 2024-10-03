@@ -1,5 +1,8 @@
 # Job Portal Capstone Project
 
+## Purpose of this project
+QuickJob project is an online platform that connects employers and job seekers, allowing employees to search for jobs and apply, while enabling employers to post job requirements and manage applicants efficiently.
+
 ## Cloning and Running the Application in local
 Clone the project into local
 
@@ -9,6 +12,15 @@ Navigate to the project directory and run the command below to install all the n
 npm install
 ```
 
+In order to run the application Type the following command
+``` bash
+npm start
+```
+The Application Runs on **localhost:3000** 
+
+## MySQL workbench setup in your local system
+• Open the db_backup file from the repo & then execute the .sql file in your MySQL workbench
+• In .env file of backend change the login credentials to yours
 
 ### npx create-react-app QuickJob
 npx create-react-app QuickJob, quickly set up a new React application called "QuickJob" with a pre-configured environment. It automatically generates the necessary files and folder structure to begin developing a React project.
