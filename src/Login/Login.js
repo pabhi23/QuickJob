@@ -26,7 +26,12 @@ const LoginPage = () => {
       sessionStorage.setItem("registerAs", data.registerAs);
 
       alert("Login successful");
-      navigate("/"); 
+
+      if (data.registerAs === "employee") {
+        navigate("/"); 
+      } else if (data.registerAs === "employer") {
+        navigate("/AdminDashboard"); 
+      }
     } else {
       alert(data.error);
     }

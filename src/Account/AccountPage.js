@@ -23,7 +23,7 @@ const AccountPage = () => {
     <div className="account-page">
       <div className="profile-container">
         <div className="profile-picture">
-          <img src="default-profile.png" alt="Profile" /> {}
+          {/* <img src="default-profile.png" alt="Profile" /> {} */}
         </div>
         <form className="account-form">
   <div className="form-group">
