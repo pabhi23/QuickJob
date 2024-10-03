@@ -19,7 +19,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Dark overlay */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -79,4 +80,92 @@ h1 {
 
 .company-logo:hover {
     transform: scale(1.1);
+}
+
+.job-listing-container {
+    display: flex;
+    margin-top: 30px;
+}
+
+.filter-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.filter-section h3 {
+    margin-bottom: 10px;
+}
+
+.filter-dropdown {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.location-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.location-list li {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.location-list li:hover {
+    text-decoration: underline;
+}
+
+.job-listings {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-card {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.job-location {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.job-title {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.job-type {
+    font-style: italic;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.job-description {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.job-details-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.job-details-button:hover {
+    background-color: #0056b3;
 }

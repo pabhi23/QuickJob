@@ -6,6 +6,8 @@ import Home from './Home/Home';
 import Registration from './Registration/Registration'; 
 import Login from './Login/Login'; 
 import ForgetPassword from './ForgetPassword/ForgetPassword'; 
+import AdminDashboard from './AdminDashboard/AdminDashboard';
+import AccountPage from './Account/AccountPage';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path="/register" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgetpassword" element={<ForgetPassword/>} />
+        <Route path="/AdminDashboard" element={<AdminDashboard/>} />
+        <Route path="/Account" element={<AccountPage/>} />
       </Routes>
       <Footer />
     </Router>
