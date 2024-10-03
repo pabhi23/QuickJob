@@ -1,5 +1,15 @@
 # Job Portal Capstone Project
 
+## Cloning and Running the Application in local
+Clone the project into local
+
+Navigate to the project directory and run the command below to install all the necessary npm packages.
+
+```bash
+npm install
+```
+
+
 ### npx create-react-app QuickJob
 npx create-react-app QuickJob, quickly set up a new React application called "QuickJob" with a pre-configured environment. It automatically generates the necessary files and folder structure to begin developing a React project.
 
