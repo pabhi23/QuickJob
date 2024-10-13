@@ -1,5 +1,7 @@
 .job-listing-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     margin-top: 50px;
   }
@@ -46,6 +48,15 @@
   .apply-button:hover {
     background-color: #0056b3;
     transition: background-color 0.3s ease;
+  }
+  .job-listing-container {
+    position: relative;
+  }
+  .search-bar {
+    width: 80%;  
+    margin-bottom: 20px; 
+    display: flex;
+    justify-content: flex-end; 
   }
   
   @media (max-width: 768px) {

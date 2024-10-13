@@ -3,9 +3,26 @@ import './JobListing.css';
 
 const JobListing = () => {
   const [jobs, setJobs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState(''); // Search query state
+
+  const filteredJobs = jobs.filter((job) =>
+    job.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    job.skill.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    job.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    job.salaryRange.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="job-listing-container">
+      <div className="search-bar">
+        <input 
+          type="text" 
+          placeholder="Search for jobs..." 
+          value={searchQuery} 
+          onChange={(e) => setSearchQuery(e.target.value)} 
+          className="search-input" 
+        />
+      </div>
       <table className="job-listing-table">
         <thead>
           <tr>
@@ -17,8 +34,8 @@ const JobListing = () => {
           </tr>
         </thead>
         <tbody>
-          {jobs.length > 0 ? (
-            jobs.map((job, index) => (
+        {filteredJobs.length > 0 ? (
+            filteredJobs.map((job, index) => (
               <tr key={index}>
                 <td>{job.jobRole}</td>
                 <td>{job.skill}</td>
