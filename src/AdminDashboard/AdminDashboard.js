@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
@@ -28,6 +29,16 @@ const AdminDashboard = () => {
       status: 'Active',
     },
   ]);
+
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    const registerAs = sessionStorage.getItem('registerAs'); 
+
+    if (registerAs !== 'employer') {
+      navigate('/'); 
+    }
+  }, [navigate]);
 
   const handleModify = (jobId) => {
     console.log(`Modify job with ID: ${jobId}`);
