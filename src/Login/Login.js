@@ -25,12 +25,15 @@ const LoginPage = () => {
       sessionStorage.setItem("lastName", data.lastName);
       sessionStorage.setItem("registerAs", data.registerAs);
 
+      const loginEvent = new Event("userLogin");
+      window.dispatchEvent(loginEvent);
+
       alert("Login successful");
 
       if (data.registerAs === "employee") {
-        navigate("/"); 
+        navigate("/");
       } else if (data.registerAs === "employer") {
-        navigate("/AdminDashboard"); 
+        navigate("/adminDashboard");
       }
     } else {
       alert(data.error);
