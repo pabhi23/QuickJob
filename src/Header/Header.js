@@ -4,25 +4,36 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import logo from '../img/quickJobLogo.png';
 
-
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation(); 
+  const location = useLocation();
   const [userName, setUserName] = useState("");
-  const [menuOpen, setMenuOpen] = useState(false); 
+  const [menuOpen, setMenuOpen] = useState(false);
   const userPhoto = "https://via.placeholder.com/40";
 
-  useEffect(() => {
+  const loadUserName = () => {
     const firstName = sessionStorage.getItem("firstName");
     const lastName = sessionStorage.getItem("lastName");
 
     if (firstName && lastName) {
       setUserName(`${firstName} ${lastName}`);
+    } else {
+      setUserName("Guest");
     }
-  }, []);
+  };
 
   useEffect(() => {
-    setMenuOpen(false); 
+    loadUserName();
+
+    const handleUserLogin = () => {
+      loadUserName();
+    };
+
+    window.addEventListener("userLogin", handleUserLogin);
+
+    return () => {
+      window.removeEventListener("userLogin", handleUserLogin);
+    };
   }, [location]);
 
   const handleLogoClick = () => {
@@ -50,7 +61,7 @@ const Header = () => {
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
-            <span className="user-name">{userName || "Guest"}</span>
+            <span className="user-name">{userName}</span>
           </div>
         </div>
       </div>
