@@ -1,15 +1,28 @@
-/* Footer styling */
 .footer {
-    background-color: #007bff; /* Same blue color as the header */
+    background-color: #007bff; 
     color: white;
     text-align: center;
     padding: 15px 0;
-    position: fixed;
-    bottom: 0;
     width: 100%;
     font-size: 16px;
+    position: relative; 
+    bottom: 0;
 }
 
 .footer p {
     margin: 0;
+}
+
+@media (max-width: 600px) {
+    .footer {
+        font-size: 14px;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .footer {
+        font-size: 12px;
+        padding: 8px 0;
+    }
 }

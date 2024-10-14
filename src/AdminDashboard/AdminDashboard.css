@@ -1,0 +1,63 @@
+.admin-dashboard-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  .job-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .job-table th, .job-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .job-table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .job-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .status-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .status-button.active {
+    background-color: #28a745; 
+  }
+  
+  .status-button.closed {
+    background-color: #dc3545; 
+  }
+  
+  .modify-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modify-button:hover {
+    background-color: #0056b3;
+  }

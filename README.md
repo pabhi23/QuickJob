@@ -51,4 +51,7 @@ Installs three packages: Express, a web framework for building server applicatio
 
 ### npm install cors
 Installs the CORS (Cross-Origin Resource Sharing) middleware package. It allows your server to handle requests from different origins, enabling QuickJob app's frontend to communicate with the backend even if they're hosted on different domains.
+<<<<<<< HEAD
 
+=======
+>>>>>>> main

@@ -1,6 +1,5 @@
-/* Header styling */
 .header {
-    background-color: #007bff; /* Blue background */
+    background-color: #007bff;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -13,13 +12,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    z-index: 999;
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    margin: 0;
+    width: 100px;
+    height: auto;
+    cursor: pointer;
 }
 
 .navbar {
@@ -37,7 +36,12 @@
     text-decoration: underline;
 }
 
-/* Dark Mode Icon */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 .dark-mode-toggle {
     margin-right: 20px;
     cursor: pointer;
@@ -46,13 +50,6 @@
 .dark-mode-icon {
     color: white;
     font-size: 24px;
-}
-
-/* User Profile */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
 .user-profile {
@@ -71,3 +68,54 @@
     font-size: 18px;
     color: white;
 }
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger-icon {
+    font-size: 24px;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position: absolute;
+        top: 45px;
+        left: 0;
+        right: 0;
+        background-color: #007bff;
+        flex-direction: column;
+        align-items: center;
+        display: none;
+        padding: 10px 0;
+        width: 100%;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .user-info {
+        display: none;
+    }
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 15px;
+  }
+  
+  .logout-button:hover {
+    text-decoration: underline;
+  }
+  
