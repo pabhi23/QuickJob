@@ -42,6 +42,14 @@ const Header = () => {
   return (
     <header className="header">
       <div className="navbar-container">
+<<<<<<< HEAD
+        <h1 className="logo" onClick={handleLogoClick}>QuickJob</h1>
+        <nav className="navbar">
+          <Link to="/register" className="nav-link">Register</Link>
+          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/account" className="nav-link">Account</Link>
+          <Link to="/joblisting" className="nav-link">Job Listing</Link>
+=======
         <img className="logo" src={logo} alt="QuickJob Logo" onClick={handleLogoClick} />
         <div className="menu-icon" onClick={toggleMenu}>
           {menuOpen ? <FaTimes className="hamburger-icon" /> : <FaBars className="hamburger-icon" />}
@@ -62,6 +70,7 @@ const Header = () => {
               Logout
             </button>
           )}
+>>>>>>> main
         </nav>
         <div className="user-info">
           <div className="dark-mode-toggle">
