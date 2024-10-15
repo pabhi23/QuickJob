@@ -8,6 +8,7 @@ import Login from './Login/Login';
 import ForgetPassword from './ForgetPassword/ForgetPassword'; 
 import AdminDashboard from './AdminDashboard/AdminDashboard';
 import AccountPage from './Account/AccountPage';
+import ApplicationManagement from './ApplicationManagement/ApplicationManagement';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword/>} />
         <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         <Route path="/Account" element={<AccountPage/>} />
+        <Route path="/applicationManagement" element={<ApplicationManagement />} />
       </Routes>
       <Footer />
     </Router>

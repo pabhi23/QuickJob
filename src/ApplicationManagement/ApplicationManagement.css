@@ -1,0 +1,60 @@
+.application-management-container {
+    margin: 40px auto;
+    max-width: 1000px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .application-management-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .application-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+  }
+  
+  .application-table th, .application-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .application-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .status-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .status-button.under-review {
+    background-color: #ff9800;
+  }
+  
+  .status-button.reviewed {
+    background-color: #4caf50;
+  }
+  
+  .view-button {
+    padding: 5px 10px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .view-button:hover {
+    background-color: #1976d2;
+  }
+  
