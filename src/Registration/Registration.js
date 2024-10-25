@@ -10,12 +10,10 @@ const Registration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const firstName = e.target.firstName.value;
     const lastName = e.target.lastName.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-
     const response = await fetch('http://localhost:5000/api/register', {
       method: 'POST',
       headers: {
@@ -23,11 +21,9 @@ const Registration = () => {
       },
       body: JSON.stringify({ firstName, lastName, email, password, userType }),
     });
-
     const data = await response.json();
-
     if (response.ok) {
-      alert(data.message); 
+      alert(data.message);
       e.target.reset();
       setUserType('employee');
     } else {
@@ -56,7 +52,7 @@ const Registration = () => {
           <input type="password" id="password" required />
         </div>
         <div className="form-group radio-group">
-          <label>Register as:</label>
+          <label>Register As:</label>
           <div className="radio-buttons">
             <label>
               <input
@@ -78,7 +74,9 @@ const Registration = () => {
             </label>
           </div>
         </div>
-        <button type="submit" className="register-button">Register</button>
+        <button type="submit" className="register-button">
+          Register
+        </button>
       </form>
     </div>
   );
