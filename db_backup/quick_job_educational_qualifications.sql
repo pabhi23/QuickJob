@@ -18,37 +18,31 @@ USE `quick_job`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `users`
+-- Table structure for table `educational_qualifications`
 --
 
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS `educational_qualifications`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `users` (
-  `user_id` int NOT NULL AUTO_INCREMENT,
-  `firstName` varchar(100) NOT NULL,
-  `lastName` varchar(100) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `phone_number` varchar(20) DEFAULT NULL,
-  `location` varchar(100) DEFAULT NULL,
-  `resume` varchar(255) DEFAULT NULL,
-  `profile_pic` varchar(255) DEFAULT NULL,
-  `registerAs` enum('employee','employer') NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `educational_qualifications` (
+  `education_id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int DEFAULT NULL,
+  `degree` varchar(100) NOT NULL,
+  `institute` varchar(150) NOT NULL,
+  `graduation_year` year NOT NULL,
+  PRIMARY KEY (`education_id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `educational_qualifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `educational_qualifications`
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Arun','Dinesh','arun@gmail.com','$2b$10$aplTiaX5EO6XV2FU40xrdO87PSMQONE5kN1odzo0vqADqVj1ESyL6',NULL,NULL,NULL,NULL,'employee','2024-10-03 10:24:59'),(2,'Abhi','Patel','abhi@gmail.com','$2b$10$QojP9BXs2XgrIFcsz11xjeB8DRGaYXEr/HI7JqRz9VZiqiY6hi5we',NULL,NULL,NULL,NULL,'employer','2024-10-03 10:25:28');
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES `educational_qualifications` WRITE;
+/*!40000 ALTER TABLE `educational_qualifications` DISABLE KEYS */;
+/*!40000 ALTER TABLE `educational_qualifications` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -60,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-25  0:00:24
+-- Dump completed on 2024-10-25  0:00:23
