@@ -4,24 +4,34 @@ import "./ForgetPassword.css";
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  const [loading, setLoading] = useState(false); 
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault();
+    setLoading(true); 
 
-    const response = await fetch("http://localhost:5000/api/forget-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, newPassword }),
-    });
+    try {
+      const response = await fetch("http://localhost:5000/api/forget-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, newPassword }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      alert(data.message); 
-    } else {
-      alert(data.error);
+      if (response.ok) {
+        alert(data.message);
+        setEmail(""); 
+        setNewPassword("");
+      } else {
+        alert(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("An error occurred. Please check your connection and try again.");
+    } finally {
+      setLoading(false); 
     }
   };
 
@@ -52,7 +62,9 @@ const ForgetPassword = () => {
             />
           </div>
 
-          <button type="submit">Update Password</button>
+          <button type="submit" disabled={loading}>
+            {loading ? "Updating..." : "Update Password"}
+          </button>
         </form>
       </div>
     </div>
