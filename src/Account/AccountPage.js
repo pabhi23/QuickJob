@@ -23,11 +23,7 @@ const AccountPage = () => {
     <div className="account-page">
       <div className="profile-container">
         <div className="profile-picture">
-<<<<<<< HEAD
-          <img src="default-profile.png" alt="Profile" /> {}
-=======
           {/* <img src="default-profile.png" alt="Profile" /> {} */}
->>>>>>> main
         </div>
         <form className="account-form">
   <div className="form-group">
@@ -89,8 +85,4 @@ const AccountPage = () => {
   );
 };
 
-<<<<<<< HEAD
 export default AccountPage;
-=======
-export default AccountPage;
->>>>>>> main
