@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../img/quickJobLogo.png";
+import logo from "../Img/quickJobLogo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -67,16 +67,35 @@ const Header = () => {
           onClick={() => navigate("/")}
         />
         <div className="menu-icon" onClick={toggleMenu}>
-          {menuOpen ? <FaTimes className="hamburger-icon" /> : <FaBars className="hamburger-icon" />}
+          {menuOpen ? (
+            <FaTimes className="hamburger-icon" />
+          ) : (
+            <FaBars className="hamburger-icon" />
+          )}
         </div>
         <nav className={`navbar ${menuOpen ? "active" : ""}`}>
           {!isLoggedIn ? (
             <>
-              <Link to="/register" className="nav-link" onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/register"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 Register
               </Link>
-              <Link to="/login" className="nav-link" onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/login"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 Login
+              </Link>
+              <Link
+                to="/search"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                Search
               </Link>
             </>
           ) : (
