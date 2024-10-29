@@ -1,16 +1,39 @@
-import React from 'react';
-import './Home.css';
-import companyLogos from './companyLogos';
+import React from "react";
+import "./Home.css";
+import companyLogos from "./companyLogos";
+import feature1 from "../img/telework.jpg";
+import feature2 from "../img/feature2.png";
+import feature3 from "../img/feature3.png";
 
 const Home = () => {
   return (
     <div className="home-container">
       <div className="hero-image">
         <div className="overlay">
-          <h1>Find Your Dream Job</h1>
-          <div className="search-bar">
-            <input type="text" placeholder="Search for jobs..." className="search-input" />
-            <button className="search-button">Search</button>
+          <h1>Your Dream Job Awaits At QuickJob</h1>
+          <p>Discover job opportunities from top companies around the world.</p>
+        </div>
+      </div>
+
+      <div className="features-container">
+        <h2>Why Choose Quick Job?</h2>
+        <div className="features-grid">
+          <div className="feature">
+            <img src={feature1} alt="Feature 1" />
+            <h3>Curated Job Listings</h3>
+            <p>
+              We provide hand-picked job opportunities from reputable companies.
+            </p>
+          </div>
+          <div className="feature">
+            <img src={feature2} alt="Feature 2" />
+            <h3>Easy Application Process</h3>
+            <p>Apply with ease and track your job applications in real time.</p>
+          </div>
+          <div className="feature">
+            <img src={feature3} alt="Feature 3" />
+            <h3>Top Hiring Companies</h3>
+            <p>Connect with top-tier companies hiring for various roles.</p>
           </div>
         </div>
       </div>
@@ -19,64 +42,22 @@ const Home = () => {
         <h2>Top Companies Hiring</h2>
         <div className="carousel">
           {companyLogos.map((logo, index) => (
-            <img src={logo} alt={`Company Logo ${index}`} className="company-logo" key={index} />
+            <img
+              src={logo}
+              alt={`Company Logo ${index}`}
+              className="company-logo"
+              key={index}
+            />
           ))}
         </div>
       </div>
 
-      {/* Job Listing Section */}
-      <div className="job-listing-container">
-        <div className="filter-section">
-          <h3>Filter job by category</h3>
-          <select className="filter-dropdown">
-            <option value="">Category</option>
-            <option value="backend">Backend Developer</option>
-            <option value="frontend">Frontend Developer</option>
-            <option value="fullstack">Full Stack Developer</option>
-          </select>
-
-          <h3>Filter job by location</h3>
-          <ul className="location-list">
-            <li>Remote</li>
-            <li>Florida</li>
-            <li>New York</li>
-          </ul>
-        </div>
-
-        <div className="job-listings">
-          <div className="job-card">
-            <p className="job-location"> New York</p>
-            <h3 className="job-title">Backend Developer</h3>
-            <p className="job-type">Fullstack</p>
-            <p className="job-description">
-              Description: We are looking for a backend developer who has good knowledge of
-              JavaScript and...
-            </p>
-            <button className="job-details-button">+ More Details</button>
-          </div>
-
-          <div className="job-card">
-            <p className="job-location">Remote</p>
-            <h3 className="job-title">Frontend Developer</h3>
-            <p className="job-type">Frontend</p>
-            <p className="job-description">
-              Description: We are looking for a frontend developer who has good knowledge of
-              JavaScript and...
-            </p>
-            <button className="job-details-button">+ More Details</button>
-          </div>
-
-          <div className="job-card">
-            <p className="job-location"> Florida</p>
-            <h3 className="job-title">Frontend Developer</h3>
-            <p className="job-type">Frontend</p>
-            <p className="job-description">
-              Description: We are looking for a frontend developer who has good knowledge of
-              JavaScript and...
-            </p>
-            <button className="job-details-button">+ More Details</button>
-          </div>
-        </div>
+      <div className="cta-container">
+        <h2>Ready to Start Your Career?</h2>
+        <p>Explore thousands of job listings now!</p>
+        <a href="/search" className="explore-button">
+          Start Your Job Search
+        </a>
       </div>
     </div>
   );
