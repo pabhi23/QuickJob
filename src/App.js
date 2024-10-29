@@ -9,6 +9,7 @@ import ForgetPassword from './ForgetPassword/ForgetPassword';
 import AdminDashboard from './AdminDashboard/AdminDashboard';
 import AccountPage from './Account/AccountPage';
 import JobPostings from './JobPostings/JobPostings';
+import ApplicationManagement from './ApplicationManagement/ApplicationManagement.js';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         <Route path="/Account" element={<AccountPage/>} />
         <Route path="/JobPostings" element={<JobPostings/>} />
+        <Route path='/ApplicationManagement' element={<ApplicationManagement/>} />
       </Routes>
       <Footer />
     </Router>
