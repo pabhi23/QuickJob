@@ -7,7 +7,6 @@ const JobSearch = () => {
     <div className="job-search-container">
       {/* Hero Section */}
       <div className="hero-section">
-        <h1>Find Your Dream Job</h1>
         <p>Search and apply for jobs from top companies worldwide.</p>
         <div className="search-bar-container">
           <input
