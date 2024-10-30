@@ -22,7 +22,7 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword/>} />
         <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         <Route path="/Account" element={<AccountPage/>} />
-        <Route path="/JobPostings" element={<JobPostings/>} />
+        <Route path="/JobPosting" element={<JobPostings/>} />
       </Routes>
       <Footer />
     </Router>
