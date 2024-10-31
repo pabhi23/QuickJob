@@ -3,53 +3,55 @@ import { useNavigate } from 'react-router-dom';
 import './ApplicationManagement.css';
 
 const ApplicationManagement = () => {
-  // Initial state for applications
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      jobRole: 'Backend Developer',
-      applicantName: 'John Doe',
-      submissionDate: '2024-10-01',
-      status: 'Under Review',
-    },
-    {
-      id: 2,
-      jobRole: 'Frontend Developer',
-      applicantName: 'Jane Smith',
-      submissionDate: '2024-09-28',
-      status: 'Reviewed',
-    },
-    {
-      id: 3,
-      jobRole: 'Full Stack Developer',
-      applicantName: 'David Johnson',
-      submissionDate: '2024-09-20',
-      status: 'Under Review',
-    },
-  ]);
-
+  const [applications, setApplications] = useState([]);
   const navigate = useNavigate();
 
-  // Check if the user is logged in and is an employer
   useEffect(() => {
     const registerAs = sessionStorage.getItem('registerAs');
     if (registerAs !== 'employer') {
       navigate('/');
+    } else {
+      fetchApplications();
     }
   }, [navigate]);
 
+  // Fetch applications from the backend
+  const fetchApplications = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/applications');
+      const data = await response.json();
+      setApplications(data);
+    } catch (error) {
+      console.error('Error fetching applications:', error);
+    }
+  };
+
   // Handle changing the application status
-  const handleStatusChange = (appId) => {
-    const updatedApplications = applications.map((app) =>
-      app.id === appId ? { ...app, status: app.status === 'Under Review' ? 'Reviewed' : 'Under Review' } : app
-    );
-    setApplications(updatedApplications);
+  const handleStatusChange = async (appId) => {
+    const application = applications.find(app => app.id === appId);
+    const newStatus = application.status === 'applied' ? 'shortlisted' : 'applied';
+
+    try {
+      await fetch(`http://localhost:5000/applications/${appId}/status`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
+
+      // Update the application status locally
+      setApplications((prevApplications) =>
+        prevApplications.map((app) =>
+          app.id === appId ? { ...app, status: newStatus } : app
+        )
+      );
+    } catch (error) {
+      console.error('Error updating status:', error);
+    }
   };
 
   // Handle viewing application details
   const handleViewDetails = (appId) => {
     console.log(`Viewing details for application ID: ${appId}`);
-    // Here you can navigate to a detailed page or open a modal with more information
   };
 
   return (
@@ -73,7 +75,7 @@ const ApplicationManagement = () => {
               <td>{app.submissionDate}</td>
               <td>
                 <button
-                  className={`status-button ${app.status === 'Under Review' ? 'under-review' : 'reviewed'}`}
+                  className={`status-button ${app.status === 'applied' ? 'under-review' : 'reviewed'}`}
                   onClick={() => handleStatusChange(app.id)}
                 >
                   {app.status}

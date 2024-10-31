@@ -8,11 +8,7 @@
     position: relative;
     width: 100%;
     height: 400px;
-<<<<<<< HEAD
-    background-image: url('../Img/searching-for-job.jpeg.jpg');
-=======
     background-image: url('../Img/searching-for-job.jpg');
->>>>>>> 3a520cb186f3b0e3fd863b36e886788415e0799e
     background-size: cover;
     background-position: center;
     display: flex;

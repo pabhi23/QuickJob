@@ -23,12 +23,11 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword/>} />
         <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         <Route path="/Account" element={<AccountPage/>} />
-<<<<<<< HEAD
+
         <Route path="/JobPostings" element={<JobPostings/>} />
         <Route path='/ApplicationManagement' element={<ApplicationManagement/>} />
 =======
         <Route path="/JobPosting" element={<JobPostings/>} />
->>>>>>> 3a520cb186f3b0e3fd863b36e886788415e0799e
       </Routes>
       <Footer />
     </Router>

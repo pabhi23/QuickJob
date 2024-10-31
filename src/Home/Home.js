@@ -1,9 +1,9 @@
 import React from "react";
 import "./Home.css";
 import companyLogos from "./companyLogos";
-import feature1 from "../img/telework.jpg";
-import feature2 from "../img/feature2.png";
-import feature3 from "../img/feature3.png";
+import feature1 from "../Img/telework.jpg";
+import feature2 from "../Img/feature2.png";
+import feature3 from "../Img/feature3.png";
 
 const Home = () => {
   return (
