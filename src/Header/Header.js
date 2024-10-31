@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Img/quickJobLogo.png";
+import logo from "../img/quickJobLogo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +10,18 @@ const Header = () => {
   const [userName, setUserName] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const getInitialDarkMode = () => {
+    try {
+      const savedMode = JSON.parse(localStorage.getItem("darkMode"));
+      return typeof savedMode === "boolean" ? savedMode : false;
+    } catch (error) {
+      return false;
+    }
+  };
+  const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const userPhoto = "https://via.placeholder.com/40";
+  const logo = "https://via.placeholder.com/100";
 
   useEffect(() => {
     const firstName = sessionStorage.getItem("firstName");
@@ -22,32 +33,44 @@ const Header = () => {
     } else {
       setIsLoggedIn(false);
     }
-  }, [location]);
 
-  const handleLogoClick = () => {
-    navigate("/");
-  };
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [location, darkMode]);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  const toggleDarkMode = () => {
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    document.body.classList.toggle("dark-mode", newDarkMode);
+    localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
   };
 
   const handleLogout = () => {
-    sessionStorage.clear(); 
-    setIsLoggedIn(false); 
-    setUserName(""); 
-    navigate("/"); 
+    sessionStorage.clear();
+    setIsLoggedIn(false);
+    setUserName("");
+    navigate("/");
   };
 
   return (
     <header className="header">
       <div className="navbar-container">
-        <img className="logo" src={logo} alt="QuickJob Logo" onClick={handleLogoClick} />
+        <img
+          className="logo"
+          src={logo}
+          alt="QuickJob Logo"
+          onClick={() => navigate("/")}
+        />
         <div className="menu-icon" onClick={toggleMenu}>
           {menuOpen ? <FaTimes className="hamburger-icon" /> : <FaBars className="hamburger-icon" />}
         </div>
         <nav className={`navbar ${menuOpen ? "active" : ""}`}>
-          {!isLoggedIn && (
+          {!isLoggedIn ? (
             <>
               <Link to="/register" className="nav-link" onClick={() => setMenuOpen(false)}>
                 Register
@@ -56,20 +79,19 @@ const Header = () => {
                 Login
               </Link>
             </>
-          )}
-          {isLoggedIn && (
+          ) : (
             <button className="nav-link logout-button" onClick={handleLogout}>
               Logout
             </button>
           )}
         </nav>
         <div className="user-info">
-          <div className="dark-mode-toggle">
+          <div className="dark-mode-toggle" onClick={toggleDarkMode}>
             <FaMoon className="dark-mode-icon" />
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
-            <span className="user-name">{userName || "Guest"}</span>
+            <span className="user-name">{userName}</span>
           </div>
         </div>
       </div>

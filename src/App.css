@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.6;
+}
+
+:root {
+    --background-color: #ffffff;
+    --text-color: #1a1a1a;
+    --link-color: #0066cc;
+    --button-bg: #007bff;
+    --button-text-color: #ffffff;
+}
+
+body.dark-mode {
+    --background-color: #0d1117; 
+    --text-color: #e0e0e0; 
+    --link-color: #58a6ff;
+    --button-bg: #21262d;
+    --button-text-color: #ffffff;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #1b1f24;
+}
+
+.header {
+    background-color: var(--button-bg);
+    padding: 15px;
+    color: var(--button-text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-link {
+    color: var(--button-text-color);
+    font-weight: bold;
+}
+
+.user-name {
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.hamburger-icon {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+input, textarea, select {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid #ccc;
+    padding: 8px;
+    margin: 5px 0;
+    width: 100%;
+    border-radius: 4px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #888;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+body.dark-mode .header {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+body.dark-mode .navbar {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+.footer {
+    background-color: var(--button-bg);
+    color: var(--button-text-color);
+    padding: 15px;
+    text-align: center;
+}
+
+body.dark-mode .footer {
+    background-color: #161b22;
+    color: #f0f6fc;
+}
+
+.dark-mode-toggle {
+    font-size: 1.2rem;
+    color: var(--button-text-color);
+    cursor: pointer;
+}
+
+.dark-mode-toggle:hover {
+    opacity: 0.8;
+}
+
+p, h1, h2, h3, h4, h5, h6, li {
+    color: var(--text-color);
+    margin: 10px 0;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+body.dark-mode a, 
+body.dark-mode button {
+    color: #f0f6fc;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #c9d1d9;
+}

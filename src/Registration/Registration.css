@@ -7,33 +7,28 @@
     padding: 20px;
     box-sizing: border-box;
 }
-
 .registration-form {
     background-color: white;
     padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
     box-sizing: border-box;
 }
-
 .registration-form h2 {
     text-align: center;
     margin-bottom: 20px;
 }
-
 .form-group {
     margin-bottom: 15px;
     text-align: left;
 }
-
 label {
     display: block;
     margin-bottom: 5px;
 }
-
 .registration-form input[type="text"],
 .registration-form input[type="email"],
 .registration-form input[type="password"] {
@@ -42,21 +37,25 @@ label {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
-
-input[type="radio"] {
-    margin-right: 5px;
-}
-
 .radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
     margin-bottom: 15px;
+    flex-wrap: nowrap;
 }
-
 .radio-buttons {
     display: flex;
-    justify-content: center;
-    gap: 10px;
+    align-items: center;
+    gap: 15px;
 }
-
+.radio-buttons label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+}
 .register-button {
     width: 100%;
     padding: 12px 20px;
@@ -66,48 +65,37 @@ input[type="radio"] {
     border-radius: 4px;
     cursor: pointer;
 }
-
 .register-button:hover {
     background-color: #0056b3;
 }
-
-
 @media (max-width: 600px) {
     .registration-form {
         padding: 20px;
     }
-
     .registration-form h2 {
         font-size: 20px;
     }
-
     .registration-form input[type="text"],
     .registration-form input[type="email"],
     .registration-form input[type="password"] {
         padding: 8px;
     }
-
     .register-button {
         padding: 10px;
     }
 }
-
-
 @media (max-width: 400px) {
     .registration-form {
         padding: 15px;
     }
-
     .registration-form h2 {
         font-size: 18px;
     }
-
     .registration-form input[type="text"],
     .registration-form input[type="email"],
     .registration-form input[type="password"] {
         padding: 7px;
     }
-
     .register-button {
         padding: 8px;
     }
