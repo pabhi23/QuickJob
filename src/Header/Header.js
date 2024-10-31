@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "./Header.css";
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Img/quickJobLogo.png";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { FaMoon, FaTimes, FaBars } from 'react-icons/fa'; // Dark mode icon
+import './Header.css'; 
 
 const Header = () => {
   const navigate = useNavigate();
@@ -67,15 +66,27 @@ const Header = () => {
           onClick={() => navigate("/")}
         />
         <div className="menu-icon" onClick={toggleMenu}>
-          {menuOpen ? <FaTimes className="hamburger-icon" /> : <FaBars className="hamburger-icon" />}
+          {menuOpen ? (
+            <FaTimes className="hamburger-icon" />
+          ) : (
+            <FaBars className="hamburger-icon" />
+          )}
         </div>
         <nav className={`navbar ${menuOpen ? "active" : ""}`}>
           {!isLoggedIn ? (
             <>
-              <Link to="/register" className="nav-link" onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/register"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 Register
               </Link>
-              <Link to="/login" className="nav-link" onClick={() => setMenuOpen(false)}>
+              <Link
+                to="/login"
+                className="nav-link"
+                onClick={() => setMenuOpen(false)}
+              >
                 Login
               </Link>
             </>
