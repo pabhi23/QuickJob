@@ -11,6 +11,7 @@ import AdminDashboard from './AdminDashboard/AdminDashboard';
 import AccountPage from './Account/AccountPage';
 import JobPostings from './JobPostings/JobPostings';
 import ApplicationManagement from './ApplicationManagement/ApplicationManagement';
+import JobApplicationPage from './JobApplicationPage/JobApplicationPage';
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
         <Route path="/Account" element={<AccountPage/>} />
         <Route path="/JobPosting" element={<JobPostings/>} />
         <Route path="/ApplicationManagement" element={<ApplicationManagement/>} />
+        <Route path="/JobApplicationPage" element={<JobApplicationPage/>} />
+
       </Routes>
       <Footer />
     </Router>
