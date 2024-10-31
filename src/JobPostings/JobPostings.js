@@ -125,6 +125,9 @@ const JobPostings = () => {
           </tbody>
         </table>
       </div>
+      <div className="footer">
+        Copyright 2024. All rights reserved.
+      </div>
     </div>
   );
 };

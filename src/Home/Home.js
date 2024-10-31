@@ -15,8 +15,6 @@ const Home = () => {
           <p>Discover job opportunities from top companies around the world.</p>
         </div>
       </div>
-
-      {/* Features Section */}
       <div className="features-container">
         <h2>Why Choose Quick Job?</h2>
         <div className="features-grid">
@@ -54,8 +52,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-
-      {/* CTA to Search Page */}
       <div className="cta-container">
         <h2>Ready to Start Your Career?</h2>
         <p>Explore thousands of job listings now!</p>
