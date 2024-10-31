@@ -83,4 +83,34 @@ router.post("/forget-password", async (req, res) => {
     });
 });
 
+router.get('/jobs', (req, res) => {
+    const { employer_id, category, location } = req.query;
+    const query = `SELECT * FROM jobs WHERE employer_id = ? 
+                   AND (job_category LIKE ? OR ? = '') 
+                   AND (location LIKE ? OR ? = '')`;
+  
+    db.query(query, [employer_id, `%${category}%`, category, `%${location}%`, location], (err, results) => {
+      if (err) return res.status(500).json({ error: 'Error fetching jobs' });
+      res.json(results);
+    });
+  });
+  
+  router.post('/jobs', (req, res) => {
+    const { job_title, job_description, job_category, location, salary_range, requirements, employer_id } = req.body;
+  
+    const sql = 'INSERT INTO jobs (job_title, job_description, job_category, location, salary_range, requirements, employer_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
+    db.query(sql, [job_title, job_description, job_category, location, salary_range, requirements, employer_id], (err) => {
+      if (err) return res.status(500).json({ error: 'Error creating job' });
+      res.status(201).json({ message: 'Job created successfully!' });
+    });
+  });
+  
+  router.delete('/jobs/:id', (req, res) => {
+    const jobId = req.params.id;
+    db.query('DELETE FROM jobs WHERE job_id = ?', [jobId], (err) => {
+      if (err) return res.status(500).json({ error: 'Error deleting job' });
+      res.status(200).json({ message: 'Job deleted successfully' });
+    });
+  });
+
 module.exports = router;
