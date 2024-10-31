@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "./Header.css";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Img/quickJobLogo.png";
+import { FaMoon, FaTimes, FaBars } from "react-icons/fa"; // Dark mode icon
+import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,9 +18,9 @@ const Header = () => {
       return false;
     }
   };
-
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const userPhoto = "https://via.placeholder.com/40";
+  const logo = "https://via.placeholder.com/100";
 
   useEffect(() => {
     const firstName = sessionStorage.getItem("firstName");
@@ -90,13 +89,6 @@ const Header = () => {
               >
                 Login
               </Link>
-              <Link
-                to="/search"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
-                Search
-              </Link>
             </>
           ) : (
             <button className="nav-link logout-button" onClick={handleLogout}>
@@ -110,7 +102,7 @@ const Header = () => {
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
-            <span className="user-name">{userName || "Guest"}</span>
+            <span className="user-name">{userName}</span>
           </div>
         </div>
       </div>
