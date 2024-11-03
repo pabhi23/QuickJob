@@ -1,9 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './JobListing.css';
 
 const JobListing = () => {
   const [jobs, setJobs] = useState([]);
   const [searchQuery, setSearchQuery] = useState(''); // Search query state
+
+  useEffect(() => {
+    fetch('/api/jobs')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => setJobs(data))
+      .catch(error => console.error('Error fetching job data:', error));
+  }, []);
+
 
   const filteredJobs = jobs.filter((job) =>
     job.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -28,7 +41,6 @@ const JobListing = () => {
           <tr>
             <th>Job Role</th>
             <th>Skill</th>
-            <th>Company Name</th>
             <th>Salary Range</th>
             <th>Apply</th>
           </tr>
@@ -39,7 +51,6 @@ const JobListing = () => {
               <tr key={index}>
                 <td>{job.jobRole}</td>
                 <td>{job.skill}</td>
-                <td>{job.companyName}</td>
                 <td>{job.salaryRange}</td>
                 <td><button className="apply-button">Apply</button></td>
               </tr>
