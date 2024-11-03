@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaTimes, FaBars } from "react-icons/fa"; // Dark mode icon
 import "./Header.css";
+import logo from '../Img/quickJobLogo.png'
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,7 +21,6 @@ const Header = () => {
   };
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const userPhoto = "https://via.placeholder.com/40";
-  const logo = "https://via.placeholder.com/100";
 
   useEffect(() => {
     const firstName = sessionStorage.getItem("firstName");

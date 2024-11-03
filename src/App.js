@@ -11,6 +11,8 @@ import AdminDashboard from "./AdminDashboard/AdminDashboard";
 import AccountPage from "./Account/AccountPage";
 import JobPostings from "./JobPostings/JobPostings";
 import JobSearch from "./JobSearch/JobSearch";
+import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
+import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path="/Account" element={<AccountPage />} />
         <Route path="/JobPostings" element={<JobPostings />} />
         <Route path="/search" element={<JobSearch />} />
+        <Route path="/ApplicationManagement" element={<ApplicationManagement />} />
+        <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
       </Routes>
       <Footer />
     </Router>
