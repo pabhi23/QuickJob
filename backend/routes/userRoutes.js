@@ -82,6 +82,22 @@ router.post("/forget-password", async (req, res) => {
         });
     });
 });
+  // Joblisting
+  router.get('/jobs', (req, res) => {
+    const query = `
+        SELECT job_title AS jobRole, 
+               job_category AS skill, 
+               salary_range AS salaryRange 
+        FROM jobs
+    `;
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching job data:', err);
+            return res.status(500).json({ error: 'Error fetching job data' });
+        }
+        res.json(results);
+    });
+});
 
 router.get('/jobs', (req, res) => {
     const { employer_id, category, location } = req.query;
@@ -112,21 +128,6 @@ router.get('/jobs', (req, res) => {
       res.status(200).json({ message: 'Job deleted successfully' });
     });
   });
-  // Joblisting
-  router.get('/jobs', (req, res) => {
-    const query = `
-        SELECT job_title AS jobRole, 
-               job_category AS skill, 
-               salary_range AS salaryRange 
-        FROM jobs
-    `;
-    db.query(query, (err, results) => {
-        if (err) {
-            console.error('Error fetching job data:', err);
-            return res.status(500).json({ error: 'Error fetching job data' });
-        }
-        res.json(results);
-    });
-});
+
 
 module.exports = router;

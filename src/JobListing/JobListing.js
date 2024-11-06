@@ -21,7 +21,6 @@ const JobListing = () => {
   const filteredJobs = jobs.filter((job) =>
     job.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.skill.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    job.companyName.toLowerCase().includes(searchQuery.toLowerCase()) ||
     job.salaryRange.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
