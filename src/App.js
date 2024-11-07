@@ -9,6 +9,7 @@ import JobListing from './JobListing/JobListing';
 import ForgetPassword from './ForgetPassword/ForgetPassword'; 
 import AdminDashboard from './AdminDashboard/AdminDashboard';
 import AccountPage from './Account/AccountPage';
+import ApplicationHistory from './ApplicationHistory/ApplicationHistory';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/AdminDashboard" element={<AdminDashboard/>} />
         <Route path="/Account" element={<AccountPage/>} />
         <Route path="/JobListing" element={<JobListing/>} />
+        <Route path="/ApplicationHistory" element={<ApplicationHistory/>} />
       </Routes>
       <Footer />
     </Router>
