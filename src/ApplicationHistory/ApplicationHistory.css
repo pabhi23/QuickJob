@@ -1,0 +1,18 @@
+.application-history {
+    padding: 20px;
+}
+
+.application-history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.application-history-table th, .application-history-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+.application-history-table th {
+    background-color: #f4f4f4;
+}
