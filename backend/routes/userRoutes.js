@@ -129,5 +129,23 @@ router.get('/jobs', (req, res) => {
     });
   });
 
+  router.get('/api/application-history/:userId', (req, res) => {
+    const { userId } = req.params;
 
+    const query = `
+        SELECT jobs.job_title, applications.status, applications.applied_at 
+        FROM applications 
+        JOIN jobs ON applications.job_id = jobs.job_id
+        WHERE applications.user_id = ?
+        ORDER BY applications.applied_at DESC;
+    `;
+
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching application history:', err);
+            return res.status(500).json({ error: 'Error fetching application history' });
+        }
+        res.json(results);
+    });
+  });
 module.exports = router;

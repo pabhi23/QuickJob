@@ -5,10 +5,21 @@ const ApplicationHistory = ({ userId }) => {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/application-history/${userId}`)
-      .then(response => response.json())
-      .then(data => setApplications(data))
-      .catch(error => console.error('Error fetching application history:', error));
+    const fetchApplicationHistory = async () => {
+      try {
+        const response = await fetch(`/api/application-history/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setApplications(data);
+        } else {
+          console.error('Failed to fetch application history');
+        }
+      } catch (error) {
+        console.error('Error fetching application history:', error);
+      }
+    };
+
+    fetchApplicationHistory();
   }, [userId]);
 
   return (
