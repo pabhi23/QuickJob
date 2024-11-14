@@ -14,7 +14,7 @@ import JobSearch from "./JobSearch/JobSearch";
 import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
 import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
-
+import JobAlertsPage from "./JobAlerts/JobAlertsPage"
 function App() {
   return (
     <Router>
@@ -31,6 +31,8 @@ function App() {
         <Route path="/ApplicationManagement" element={<ApplicationManagement />} />
         <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
         <Route path="/ResumeUpload" element={<ResumeUpload />} />
+        <Route path="/jobalerts" element={<JobAlertsPage />} />
+
       </Routes>
       <Footer />
     </Router>
