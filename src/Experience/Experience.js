@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../PersonalInfo/PersonalInfo.css'; // Reuse the same CSS file for consistent styling
 
 const Experience = ({ nextStep, prevStep, handleChange, formData, userId }) => {
     const [experiences, setExperiences] = useState([]);
@@ -20,12 +21,11 @@ const Experience = ({ nextStep, prevStep, handleChange, formData, userId }) => {
                 ...prev,
                 responsibilities: [...prev.responsibilities, responsibility],
             }));
-            setResponsibility(''); // Clear the input after adding
+            setResponsibility(''); 
         }
     };
 
     const removeResponsibility = (index) => {
-        // Remove responsibility from the current experience's responsibilities
         setCurrentExperience((prev) => ({
             ...prev,
             responsibilities: prev.responsibilities.filter((_, i) => i !== index),
@@ -35,7 +35,7 @@ const Experience = ({ nextStep, prevStep, handleChange, formData, userId }) => {
     const addExperience = () => {
         const newExperiences = [...experiences, currentExperience];
         setExperiences(newExperiences);
-        saveExperience({ ...currentExperience, userId }); // Include userId when saving experience
+        saveExperience({ ...currentExperience, userId });
         resetCurrentExperience();
     };
 
@@ -48,15 +48,14 @@ const Experience = ({ nextStep, prevStep, handleChange, formData, userId }) => {
             isCurrent: false,
             responsibilities: [],
         });
-        setResponsibility(''); // Clear the responsibility input
+        setResponsibility(''); 
     };
 
     const saveExperience = async (experienceData) => {
-        // Convert responsibilities array to a string (e.g., comma-separated)
         const responsibilitiesString = experienceData.responsibilities.join(', ');
         const dataToSend = {
             ...experienceData,
-            responsibilities: responsibilitiesString // Include responsibilities as a string
+            responsibilities: responsibilitiesString
         };
 
         try {
@@ -73,78 +72,93 @@ const Experience = ({ nextStep, prevStep, handleChange, formData, userId }) => {
     };
 
     return (
-        <div>
-            <h2>Professional Experience</h2>
-            <input 
-                type="text" 
-                placeholder="Company Name" 
-                value={currentExperience.company} 
-                onChange={(e) => setCurrentExperience({ ...currentExperience, company: e.target.value })} 
-            />
-            <input 
-                type="text" 
-                placeholder="Position" 
-                value={currentExperience.position} 
-                onChange={(e) => setCurrentExperience({ ...currentExperience, position: e.target.value })} 
-            />
-            <input 
-                type="date" 
-                placeholder="Start Date" 
-                value={currentExperience.startDate} 
-                onChange={(e) => setCurrentExperience({ ...currentExperience, startDate: e.target.value })} 
-            />
-            <input 
-                type="date" 
-                placeholder="End Date" 
-                value={currentExperience.endDate} 
-                onChange={(e) => setCurrentExperience({ ...currentExperience, endDate: e.target.value })} 
-            />
-            <label>
-                <input 
-                    type="checkbox" 
-                    checked={currentExperience.isCurrent} 
-                    onChange={(e) => setCurrentExperience({ ...currentExperience, isCurrent: e.target.checked })} 
-                />
-                I am currently working here
-            </label>
+        <div className="form-wrapper">
+            <div className="form-container">
+                <h2 className="heading">Professional Experience</h2>
 
-            {/* Responsibilities section */}
-            <div>
-                <h4>Responsibilities</h4>
-                <input 
-                    type="text" 
-                    placeholder="Add a responsibility" 
-                    value={responsibility} 
-                    onChange={(e) => setResponsibility(e.target.value)} 
-                />
-                <button onClick={addResponsibility}>Add Responsibility</button>
-                <ul>
+                <div className="input-row">
+                    <input
+                        className="personal-input"
+                        type="text"
+                        placeholder="Company Name"
+                        value={currentExperience.company}
+                        onChange={(e) => setCurrentExperience({ ...currentExperience, company: e.target.value })}
+                    />
+                    <input
+                        className="personal-input"
+                        type="text"
+                        placeholder="Position"
+                        value={currentExperience.position}
+                        onChange={(e) => setCurrentExperience({ ...currentExperience, position: e.target.value })}
+                    />
+                </div>
+
+                <div className="input-row">
+                    <input
+                        className="personal-input"
+                        type="date"
+                        placeholder="Start Date"
+                        value={currentExperience.startDate}
+                        onChange={(e) => setCurrentExperience({ ...currentExperience, startDate: e.target.value })}
+                    />
+                    <input
+                        className="personal-input"
+                        type="date"
+                        placeholder="End Date"
+                        value={currentExperience.endDate}
+                        onChange={(e) => setCurrentExperience({ ...currentExperience, endDate: e.target.value })}
+                    />
+                </div>
+
+                <label className="checkbox-label">
+                    <input
+                        type="checkbox"
+                        checked={currentExperience.isCurrent}
+                        onChange={(e) => setCurrentExperience({ ...currentExperience, isCurrent: e.target.checked })}
+                    />
+                    I am currently working here
+                </label>
+
+                <div className="input-row">
+                    <input
+                        className="personal-input"
+                        type="text"
+                        placeholder="Add a responsibility"
+                        value={responsibility}
+                        onChange={(e) => setResponsibility(e.target.value)}
+                    />
+                    <button className="personal-input" onClick={addResponsibility}>Add Responsibility</button>
+                </div>
+
+                <ul className="responsibilities-list">
                     {currentExperience.responsibilities.map((resp, index) => (
-                        <li key={index}>
+                        <li key={index} className="responsibility-item">
                             {resp}
-                            <button onClick={() => removeResponsibility(index)}>Remove</button>
+                            <button className="remove-btn" onClick={() => removeResponsibility(index)}>Remove</button>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="input-row">
+                    <button className="personal-input" onClick={addExperience}>Add Experience</button>
+                    <button className="personal-input" onClick={prevStep}>Back</button>
+                    <button className="personal-input" onClick={handleNext}>Next</button>
+                </div>
+
+                <h3>Added Experiences</h3>
+                <ul>
+                    {experiences.map((exp, index) => (
+                        <li key={index}>
+                            {exp.company} - {exp.position} ({exp.startDate} to {exp.isCurrent ? 'Present' : exp.endDate})
+                            <ul>
+                                {exp.responsibilities.map((resp, respIndex) => (
+                                    <li key={respIndex}>{resp}</li>
+                                ))}
+                            </ul>
                         </li>
                     ))}
                 </ul>
             </div>
-
-            <button onClick={addExperience}>Add Experience</button>
-            <button onClick={prevStep}>Back</button>
-            <button onClick={handleNext}>Next</button>
-
-            <h3>Added Experiences</h3>
-            <ul>
-                {experiences.map((exp, index) => (
-                    <li key={index}>
-                        {exp.company} - {exp.position} ({exp.startDate} to {exp.isCurrent ? 'Present' : exp.endDate})
-                        <ul>
-                            {exp.responsibilities.map((resp, respIndex) => (
-                                <li key={respIndex}>{resp}</li>
-                            ))}
-                        </ul>
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 };

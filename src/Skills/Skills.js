@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../PersonalInfo/PersonalInfo.css'; // Reuse the same CSS file for styling
 
 const Skills = ({ prevStep, handleChange, formData, handleSubmit }) => {
     const [skill, setSkill] = useState('');
@@ -16,25 +17,34 @@ const Skills = ({ prevStep, handleChange, formData, handleSubmit }) => {
     };
 
     return (
-        <div>
-            <h2>Skills</h2>
-            <input 
-                type="text" 
-                placeholder="Skill" 
-                value={skill} 
-                onChange={(e) => setSkill(e.target.value)} 
-            />
-            <button onClick={addSkill}>Add Skill</button>
-            <ul>
-                {formData.skills.map((s, index) => (
-                    <li key={index}>{s}</li>
-                ))}
-            </ul>
-            <button onClick={prevStep}>Back</button>
-            <button onClick={handleSubmitWithDownload}>Submit</button>
+        <div className="form-wrapper">
+            <div className="form-container">
+                <h2 className="heading">Skills</h2>
+
+                <div className="input-row">
+                    <input
+                        className="personal-input"
+                        type="text"
+                        placeholder="Add a skill"
+                        value={skill}
+                        onChange={(e) => setSkill(e.target.value)}
+                    />
+                    <button className="personal-input" onClick={addSkill}>Add Skill</button>
+                </div>
+
+                <ul className="skills-list">
+                    {formData.skills.map((s, index) => (
+                        <li key={index} className="skill-item">{s}</li>
+                    ))}
+                </ul>
+
+                <div className="input-row">
+                    <button className="personal-input" onClick={prevStep}>Back</button>
+                    <button className="personal-input" onClick={handleSubmitWithDownload}>Submit</button>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default Skills;
-
