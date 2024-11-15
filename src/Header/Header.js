@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate, Link, useLocation } from "react-router-dom";
-import { FaMoon, FaTimes, FaBars } from "react-icons/fa"; // Dark mode icon
+
+import React, { useEffect, useState } from "react";
 import "./Header.css";
-import logo from '../Img/quickJobLogo.png'
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
+import logo from "../img/quickJobLogo.png";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -19,6 +21,7 @@ const Header = () => {
       return false;
     }
   };
+
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const userPhoto = "https://via.placeholder.com/40";
 
@@ -91,9 +94,17 @@ const Header = () => {
               </Link>
             </>
           ) : (
-            <button className="nav-link logout-button" onClick={handleLogout}>
-              Logout
-            </button>
+            <>
+              <Link to="/AdminDashboard" className="nav-link" onClick={() => setMenuOpen(false)}>
+                Admin Dashboard
+              </Link>
+              <Link to="/jobPosting" className="nav-link" onClick={() => setMenuOpen(false)}>
+                Job Posting
+              </Link>
+              <button className="nav-link logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
           )}
         </nav>
         <div className="user-info">
@@ -102,7 +113,7 @@ const Header = () => {
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
-            <span className="user-name">{userName}</span>
+            <span className="user-name">{userName || "Guest"}</span>
           </div>
         </div>
       </div>

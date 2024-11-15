@@ -85,9 +85,7 @@ router.post("/forget-password", async (req, res) => {
 
 router.get('/jobs', (req, res) => {
     const { employer_id, category, location } = req.query;
-    const query = `SELECT * FROM jobs WHERE employer_id = ? 
-                   AND (job_category LIKE ? OR ? = '') 
-                   AND (location LIKE ? OR ? = '')`;
+    const query = `SELECT * FROM jobs WHERE user_id = 1`;
   
     db.query(query, [employer_id, `%${category}%`, category, `%${location}%`, location], (err, results) => {
       if (err) return res.status(500).json({ error: 'Error fetching jobs' });
@@ -96,14 +94,18 @@ router.get('/jobs', (req, res) => {
   });
   
   router.post('/jobs', (req, res) => {
-    const { job_title, job_description, job_category, location, salary_range, requirements, employer_id } = req.body;
-  
-    const sql = 'INSERT INTO jobs (job_title, job_description, job_category, location, salary_range, requirements, employer_id) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    db.query(sql, [job_title, job_description, job_category, location, salary_range, requirements, employer_id], (err) => {
-      if (err) return res.status(500).json({ error: 'Error creating job' });
-      res.status(201).json({ message: 'Job created successfully!' });
+    const { job_title, job_description, job_category, location, salary_range, requirements } = req.body;
+
+    const sql = 'INSERT INTO jobs (job_title, job_description, job_category, location, salary_range, requirements) VALUES (?, ?, ?, ?, ?, ?)';
+    
+    db.query(sql, [job_title, job_description, job_category, location, salary_range, requirements], (err, result) => {
+        if (err) {
+            console.error('Error inserting job:', err);
+            return res.status(500).json({ error: 'Error creating job posting' });
+        }
+        res.status(201).json({ message: 'Job created successfully!', jobId: result.insertId });
     });
-  });
+});
   
   router.delete('/jobs/:id', (req, res) => {
     const jobId = req.params.id;

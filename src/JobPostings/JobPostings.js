@@ -13,18 +13,22 @@ const JobPostings = () => {
     requirements: '',
   });
 
-  const [filters, setFilters] = useState({ category: '', location: '' });
-  const employerId = sessionStorage.getItem('employerId');
-
   useEffect(() => {
     fetchJobs();
   }, []);
 
+  const handleDeleteJob = async (jobId) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/jobs/${jobId}`);
+      fetchJobs(); 
+    } catch (error) {
+      console.error('Error deleting job:', error);
+    }
+  }
+
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/jobs', {
-        params: { employer_id: employerId, ...filters },
-      });
+      const response = await axios.get('http://localhost:5000/api/jobs');
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error);
@@ -39,8 +43,11 @@ const JobPostings = () => {
   const handleCreateJob = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/jobs', { ...newJob, employer_id: employerId });
+      const response = await axios.post('http://localhost:5000/api/jobs', newJob);
+      console.log(response.data.message); 
+      
       fetchJobs();
+
       setNewJob({
         job_title: '',
         job_description: '',
@@ -52,19 +59,6 @@ const JobPostings = () => {
     } catch (error) {
       console.error('Error creating job:', error);
     }
-  };
-
-  const handleDeleteJob = async (jobId) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/jobs/${jobId}`);
-      fetchJobs();
-    } catch (error) {
-      console.error('Error deleting job:', error);
-    }
-  };
-
-  const handleSearch = () => {
-    fetchJobs();
   };
 
   return (
@@ -84,22 +78,6 @@ const JobPostings = () => {
 
       <div className="table-container">
         <h3>Job Postings</h3>
-        <div className="filters">
-          <input
-            type="text"
-            placeholder="Filter by Category"
-            value={filters.category}
-            onChange={(e) => setFilters({ ...filters, category: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Filter by Location"
-            value={filters.location}
-            onChange={(e) => setFilters({ ...filters, location: e.target.value })}
-          />
-          <button onClick={handleSearch}>Search</button>
-        </div>
-
         <table className="job-table">
           <thead>
             <tr>
@@ -111,22 +89,26 @@ const JobPostings = () => {
             </tr>
           </thead>
           <tbody>
-            {jobs.map((job) => (
-              <tr key={job.job_id}>
-                <td>{job.job_title}</td>
-                <td>{job.job_category}</td>
-                <td>{job.location}</td>
-                <td>{job.salary_range}</td>
+              <tr>
+                <td>Software Engineer</td>
+                <td>IT</td>
+                <td>Toronto</td>
+                <td>70,000- 90,000</td>
                 <td>
-                  <button onClick={() => handleDeleteJob(job.job_id)}>Delete</button>
+                  <button className="status-button"> Active</button>
                 </td>
               </tr>
-            ))}
+              <tr>
+                <td>Product Manager</td>
+                <td>Management</td>
+                <td>Vancouver</td>
+                <td>80,000- 1,00,000</td>
+                <td>
+                  <button className="status-button"> Active</button>
+                </td>
+              </tr>
           </tbody>
         </table>
-      </div>
-      <div className="footer">
-        Copyright 2024. All rights reserved.
       </div>
     </div>
   );
