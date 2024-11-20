@@ -1,10 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
 import logo from "../img/quickJobLogo.png";
-
 
 const Header = () => {
   const navigate = useNavigate();
@@ -109,7 +107,7 @@ const Header = () => {
         </nav>
         <div className="user-info">
           <div className="dark-mode-toggle" onClick={toggleDarkMode}>
-            <FaMoon className="dark-mode-icon" />
+            <FaMoon className={`dark-mode-icon ${darkMode ? "active" : ""}`} />
           </div>
           <div className="user-profile">
             <img src={userPhoto} alt="User" className="user-photo" />
