@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
 const router = express.Router();
+const connection = require('../config/db');
 
 router.post('/register', (req, res) => {
     const { firstName, lastName, email, password, userType } = req.body;
@@ -85,7 +86,8 @@ router.post("/forget-password", async (req, res) => {
   // Joblisting
   router.get('/jobs', (req, res) => {
     const query = `
-        SELECT job_title AS jobRole, 
+        SELECT job_id,
+               job_title AS jobRole, 
                job_category AS skill, 
                salary_range AS salaryRange 
         FROM jobs
@@ -148,4 +150,73 @@ router.get('/jobs', (req, res) => {
         res.json(results);
     });
   });
+// Apply Job
+  router.post('/applications', (req, res) => {
+    const { jobId, userId } = req.body;
+  
+    console.log('Payload received by backend:', req.body);
+  
+    if (!jobId || !userId) {
+      return res.status(400).json({ error: 'Job ID and User ID are required' });
+    }
+  
+    const checkQuery = 'SELECT * FROM applications WHERE user_id = ? AND job_id = ?';
+    connection.query(checkQuery, [userId, jobId], (err, results) => {
+      if (err) {
+        console.error('Error checking for existing application:', err);
+        return res.status(500).json({ error: 'Database error' });
+      }
+  
+      if (results.length > 0) {
+        return res.status(200).json({ message: 'Application already exists!' });
+      }
+  
+      const insertQuery = `
+        INSERT INTO applications (user_id, job_id, status)
+        VALUES (?, ?, 'applied');
+      `;
+      connection.query(insertQuery, [userId, jobId], (err, result) => {
+        if (err) {
+          console.error('Error applying for the job:', err);
+          return res.status(500).json({ error: 'Failed to apply for the job' });
+        }
+        res.status(201).json({ message: 'Application successful!' });
+      });
+    });
+  });  
+
+  router.get('/applications/:userId', (req, res) => {
+    const userId = req.params.userId;
+  
+    const query = `SELECT job_id FROM applications WHERE user_id = ? AND status = 'applied'`;
+  
+    connection.query(query, [userId], (err, results) => {
+      if (err) {
+        console.error('Error fetching applied jobs:', err);
+        return res.status(500).json({ error: 'Failed to fetch applied jobs' });
+      }
+      const appliedJobs = results.map((row) => row.job_id); 
+      res.status(200).json(appliedJobs);
+    });
+  });
+  
+  router.delete('/applications/applied', (req, res) => {
+    const { jobId, userId } = req.body;
+  
+    if (!jobId || !userId) {
+      return res.status(400).json({ error: 'Job ID and User ID are required' });
+    }
+  
+    const query = `DELETE FROM applications WHERE user_id = ? AND job_id = ?`;
+  
+    connection.query(query, [userId, jobId], (err, result) => {
+      if (err) {
+        console.error('Error unapplying for the job:', err);
+        return res.status(500).json({ error: 'Failed to unapply for the job' });
+      }
+      res.status(200).json({ message: 'Unapplied successfully!' });
+    });
+  });
+  
+  
 module.exports = router;
