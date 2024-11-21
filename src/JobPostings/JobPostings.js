@@ -62,7 +62,7 @@ const JobPostings = () => {
 
   const handleDeleteJob = async (jobId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${jobId}`);
+      await axios.delete(http://localhost:5000/api/jobs/${jobId});
       fetchJobs();
     } catch (error) {
       console.error("Error deleting job:", error);
@@ -262,4 +262,4 @@ const JobPostings = () => {
   );
 };
 
-export default JobPostings;
+export default JobPostings;

@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Img/quickJobLogo.png";
+import logo from "../img/quickJobLogo.png";
+
 
 const Header = () => {
   const navigate = useNavigate();
@@ -93,18 +95,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link
-                to="/AdminDashboard"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <Link to="/AdminDashboard" className="nav-link" onClick={() => setMenuOpen(false)}>
                 Admin Dashboard
               </Link>
-              <Link
-                to="/jobPostings"
-                className="nav-link"
-                onClick={() => setMenuOpen(false)}
-              >
+              <Link to="/jobPosting" className="nav-link" onClick={() => setMenuOpen(false)}>
                 Job Posting
               </Link>
               <button className="nav-link logout-button" onClick={handleLogout}>
