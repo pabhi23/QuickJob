@@ -11,6 +11,8 @@ const SavedJobs = () => {
       .catch((error) => console.error('Error fetching saved jobs:', error));
   }, [userId]);
   return (
+    <div className="page-container">
+    <div className="content-wrap">
     <div className="saved-jobs-container">
       <h2>Saved Jobs</h2>
       {savedJobs.length > 0 ? (
@@ -38,6 +40,8 @@ const SavedJobs = () => {
       ) : (
         <p>No saved jobs found.</p>
       )}
+    </div>
+    </div>
     </div>
   );
 };

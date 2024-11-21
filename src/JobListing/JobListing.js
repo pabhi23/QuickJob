@@ -155,6 +155,8 @@ const JobListing = () => {
   );
 
   return (
+    <div className="page-container">
+      <div className="content-wrap">
     <div className="job-listing-container">
       <div className="search-bar">
         <input 
@@ -203,6 +205,8 @@ const JobListing = () => {
       {/*<a href="/saved-jobs" className="saved-jobs-link">
       View Saved Jobs
       </a>*/}
+    </div>
+    </div>
     </div>
   );
 };

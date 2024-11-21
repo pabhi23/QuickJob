@@ -22,6 +22,8 @@ const ApplicationHistory = () => {
       });
   }, [userId]);
   return (
+    <div className="page-container">
+    <div className="content-wrap">
     <div className="application-history">
       <h2>Application History</h2>
       <table className="application-history-table">
@@ -48,6 +50,8 @@ const ApplicationHistory = () => {
           )}
         </tbody>
       </table>
+    </div>
+    </div>
     </div>
   );
 };

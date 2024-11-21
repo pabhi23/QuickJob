@@ -54,6 +54,15 @@
   .saved-jobs-container {
     position: relative;
   }
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 75vh; 
+  }
+  
+  .content-wrap {
+    flex: 1; 
+  }
   
   @media (max-width: 768px) {
     .saved-jobs-table {
