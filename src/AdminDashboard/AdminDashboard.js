@@ -1,42 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './AdminDashboard.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
   const [jobList, setJobList] = useState([
     {
-      id: 1,
-      role: 'Backend Developer',
-      postingDate: '2024-09-25',
-      skills: 'JavaScript, Node.js',
-      applicants: 10,
-      status: 'Active',
-    },
-    {
-      id: 2,
-      role: 'Frontend Developer',
-      postingDate: '2024-09-20',
-      skills: 'React, CSS',
+      job_id: 1,
+      job_title: "Software Engineer",
+      posting_date: "2024-11-15",
+      skills: "JavaScript, React",
       applicants: 5,
-      status: 'Closed',
+      status: "Active",
     },
     {
-      id: 3,
-      role: 'Full Stack Developer',
-      postingDate: '2024-09-15',
-      skills: 'JavaScript, Node.js, React',
+      job_id: 2,
+      job_title: "Product Manager",
+      posting_date: "2024-11-10",
+      skills: "Agile, Scrum",
       applicants: 8,
-      status: 'Active',
+      status: "Closed",
     },
-  ]);
-
-  const navigate = useNavigate(); 
+    {
+      job_id: 3,
+      job_title: "Full Stack Developer",
+      posting_date: "2024-11-05",
+      skills: "Node.js, React",
+      applicants: 10,
+      status: "Active",
+    },
+  ]); // Static data for jobs
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const registerAs = sessionStorage.getItem('registerAs'); 
+    const registerAs = sessionStorage.getItem("registerAs");
 
-    if (registerAs !== 'employer') {
-      navigate('/'); 
+    if (registerAs !== "employer") {
+      navigate("/");
     }
   }, [navigate]);
 
@@ -45,10 +44,13 @@ const AdminDashboard = () => {
   };
 
   const handleStatusChange = (jobId) => {
-    const updatedList = jobList.map((job) =>
-      job.id === jobId ? { ...job, status: job.status === 'Active' ? 'Closed' : 'Active' } : job
+    setJobList((prevList) =>
+      prevList.map((job) =>
+        job.job_id === jobId
+          ? { ...job, status: job.status === "Active" ? "Closed" : "Active" }
+          : job
+      )
     );
-    setJobList(updatedList);
   };
 
   return (
@@ -67,21 +69,26 @@ const AdminDashboard = () => {
         </thead>
         <tbody>
           {jobList.map((job) => (
-            <tr key={job.id}>
-              <td>{job.role}</td>
-              <td>{job.postingDate}</td>
-              <td>{job.skills}</td>
-              <td>{job.applicants}</td>
+            <tr key={job.job_id}>
+              <td>{job.job_title || "N/A"}</td>
+              <td>{job.posting_date || "N/A"}</td>
+              <td>{job.skills || "N/A"}</td>
+              <td>{job.applicants || 0}</td>
               <td>
                 <button
-                  className={`status-button ${job.status === 'Active' ? 'active' : 'closed'}`}
-                  onClick={() => handleStatusChange(job.id)}
+                  className={`status-button ${
+                    job.status === "Active" ? "active" : "closed"
+                  }`}
+                  onClick={() => handleStatusChange(job.job_id)}
                 >
-                  {job.status}
+                  {job.status || "No Status"}
                 </button>
               </td>
               <td>
-                <button className="modify-button" onClick={() => handleModify(job.id)}>
+                <button
+                  className="modify-button"
+                  onClick={() => handleModify(job.job_id)}
+                >
                   Modify
                 </button>
               </td>

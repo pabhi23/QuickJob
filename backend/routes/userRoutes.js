@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const db = require("../config/db");
 const router = express.Router();
 const sendEmail = require("../utils/emailService");
+
 router.post("/register", (req, res) => {
   const {firstName, lastName, email, password, userType }= req.body;
   console.log("Received data:", req.body);
@@ -35,7 +36,7 @@ router.post("/register", (req, res) => {
         // Return user_id along with success message
         return res.status(201).json({
           message: "User registered successfully!",
-          user_id: result.insertId, // Return the generated user_id
+          user_id: result.insertId,
         });
       }
     );
@@ -88,7 +89,7 @@ router.post("/forget-password", async (req, res) => {
       db.query(
         "UPDATE users SET password = ? WHERE email = ?",
         [hashedPassword, email],
-        (err, result) => {
+        (err) => {
           if (err) {
             return res.status(500).json({error: "Server error" });
           }
@@ -102,10 +103,9 @@ router.get("/jobs", (req, res) => {
   const {employer_id, category, location }= req.query;
   // Updated query to use user_id instead of employer_id
   const query = `
-    SELECT * FROM jobs 
-    WHERE user_id = ? 
-      AND (job_category LIKE ? OR ? = '') 
-      AND (location LIKE ? OR ? = '')
+    SELECT * FROM jobs
+    WHERE (job_category LIKE ? OR ? = '')
+      AND (location LIKE ? OR ? = '');
   `;
   db.query(
     query,
@@ -119,12 +119,14 @@ router.get("/jobs", (req, res) => {
     }
   );
 });
+
 const fetchAllAlertsQuery = `
   SELECT * FROM job_alerts
 `;
 db.query(fetchAllAlertsQuery, (alertsErr, allAlerts) => {
   console.log("All User Alerts in Database:", allAlerts);
 });
+
 router.post("/jobs", (req, res) => {
   const {
     job_title,
@@ -266,6 +268,7 @@ router.post("/jobs", (req, res) => {
 });
 router.delete("/jobs/:id", (req, res) => {
   const jobId = req.params.id;
+
   db.query("DELETE FROM jobs WHERE job_id = ?", [jobId], (err) => {
     if (err) return res.status(500).json({error: "Error deleting job" });
     res.status(200).json({message: "Job deleted successfully" });
