@@ -60,4 +60,52 @@
   
   .modify-button:hover {
     background-color: #0056b3;
+  }.status-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
   }
+  
+  .status-button.active {
+    background-color: #28a745 !important;
+  }
+  
+  .status-button.closed {
+    background-color: #dc3545 !important;
+  }
+  
+  .modify-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .modify-button:hover {
+    background-color: #0056b3;
+  }
+  .status-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .status-button.active {
+    background-color: #28a745; /* Green for Active */
+  }
+  
+  .status-button.closed {
+    background-color: #dc3545; /* Red for Closed */
+  }
+  
+  .status-button:hover {
+    opacity: 0.9;
+  }
+  

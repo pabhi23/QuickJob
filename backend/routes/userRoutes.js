@@ -3,24 +3,21 @@ const bcrypt = require("bcrypt");
 const db = require("../config/db");
 const router = express.Router();
 const sendEmail = require("../utils/emailService");
+
 router.post("/register", (req, res) => {
   const { firstName, lastName, email, password, userType } = req.body;
-
   console.log("Received data:", req.body);
 
-  // Validate all required fields
   if (!firstName || !lastName || !email || !password || !userType) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  // Hash the password
   bcrypt.hash(password, 10, (err, hashedPassword) => {
     if (err) {
       console.error("Error hashing password:", err);
       return res.status(500).json({ error: "Error hashing password" });
     }
 
-    // SQL query to insert user
     const sql =
       "INSERT INTO users (firstName, lastName, email, password, registerAs) VALUES (?, ?, ?, ?, ?)";
     db.query(
@@ -29,32 +26,24 @@ router.post("/register", (req, res) => {
       (err, result) => {
         if (err) {
           console.error("Error saving user:", err);
-
-          // Handle duplicate email case (for example, based on unique email constraint)
           if (err.code === "ER_DUP_ENTRY") {
             return res.status(400).json({ error: "Email already registered" });
           }
-
           return res.status(500).json({ error: "Error saving user" });
         }
-
         console.log("User registered with ID:", result.insertId);
-
-        // Return user_id along with success message
         return res.status(201).json({
           message: "User registered successfully!",
-          user_id: result.insertId, // Return the generated user_id
+          user_id: result.insertId,
         });
       }
     );
   });
 });
 
-// Login route
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
-  // Query the database for the user by email
   db.query(
     "SELECT * FROM users WHERE email = ?",
     [email],
@@ -63,16 +52,12 @@ router.post("/login", async (req, res) => {
         console.error("Database error:", err);
         return res.status(500).json({ error: "Server error" });
       }
-
       if (results.length === 0) {
         return res.status(401).json({ error: "Invalid email or password" });
       }
 
       const user = results[0];
-
-      // Compare the provided password with the hashed password
       const isPasswordValid = await bcrypt.compare(password, user.password);
-
       if (!isPasswordValid) {
         return res.status(401).json({ error: "Invalid email or password" });
       }
@@ -97,7 +82,6 @@ router.post("/forget-password", async (req, res) => {
       if (err) {
         return res.status(500).json({ error: "Server error" });
       }
-
       if (results.length === 0) {
         return res.status(404).json({ error: "Email does not exist" });
       }
@@ -108,32 +92,89 @@ router.post("/forget-password", async (req, res) => {
       db.query(
         "UPDATE users SET password = ? WHERE email = ?",
         [hashedPassword, email],
-        (err, result) => {
+        (err) => {
           if (err) {
             return res.status(500).json({ error: "Server error" });
           }
-
           res.status(200).json({ message: "Password updated successfully" });
         }
       );
     }
   );
 });
+router.put("/jobs/:id", (req, res) => {
+  const { id } = req.params; // Extract the job ID from the route parameter
+  const {
+    job_title,
+    job_description,
+    job_category,
+    location,
+    salary_range,
+    requirements,
+  } = req.body; // Extract updated job details from the request body
+
+  // Validate required fields
+  if (
+    !job_title ||
+    !job_description ||
+    !job_category ||
+    !location ||
+    !salary_range ||
+    !requirements
+  ) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const updateQuery = `
+    UPDATE jobs 
+    SET 
+      job_title = ?, 
+      job_description = ?, 
+      job_category = ?, 
+      location = ?, 
+      salary_range = ?, 
+      requirements = ?
+    WHERE job_id = ?
+  `;
+
+  db.query(
+    updateQuery,
+    [
+      job_title,
+      job_description,
+      job_category,
+      location,
+      salary_range,
+      requirements,
+      id,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error("Error updating job:", err);
+        return res.status(500).json({ error: "Error updating job" });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: "Job not found" });
+      }
+
+      res.status(200).json({ message: "Job updated successfully" });
+    }
+  );
+});
 
 router.get("/jobs", (req, res) => {
-  const { employer_id, category, location } = req.query;
+  const { category, location } = req.query;
 
-  // Updated query to use user_id instead of employer_id
   const query = `
-    SELECT * FROM jobs 
-    WHERE user_id = ? 
-      AND (job_category LIKE ? OR ? = '') 
-      AND (location LIKE ? OR ? = '')
+    SELECT * FROM jobs
+    WHERE (job_category LIKE ? OR ? = '')
+      AND (location LIKE ? OR ? = '');
   `;
 
   db.query(
     query,
-    [employer_id, `%${category}%`, category, `%${location}%`, location],
+    [`%${category}%`, category, `%${location}%`, location],
     (err, results) => {
       if (err) {
         console.error("Error fetching jobs:", err);
@@ -143,12 +184,14 @@ router.get("/jobs", (req, res) => {
     }
   );
 });
+
 const fetchAllAlertsQuery = `
   SELECT * FROM job_alerts
 `;
 db.query(fetchAllAlertsQuery, (alertsErr, allAlerts) => {
   console.log("All User Alerts in Database:", allAlerts);
 });
+
 router.post("/jobs", (req, res) => {
   const {
     job_title,
@@ -161,7 +204,6 @@ router.post("/jobs", (req, res) => {
   } = req.body;
 
   console.log("Received Job Data:", req.body);
-
   if (
     !job_title ||
     !job_description ||
@@ -179,7 +221,6 @@ router.post("/jobs", (req, res) => {
     INSERT INTO jobs (job_title, job_description, job_category, location, salary_range, requirements, user_id)
     VALUES (?, ?, ?, ?, ?, ?, ?)
   `;
-
   db.query(
     insertQuery,
     [
@@ -200,9 +241,7 @@ router.post("/jobs", (req, res) => {
       const jobId = result.insertId;
       console.log("Job created with ID:", jobId);
 
-      // Log all user alerts for testing
-      const fetchAllAlertsQuery = `SELECT * FROM job_alerts`;
-
+      const fetchAllAlertsQuery = "SELECT * FROM job_alerts";
       db.query(fetchAllAlertsQuery, (alertsErr, allAlerts) => {
         if (alertsErr) {
           console.error("Error fetching all alerts:", alertsErr);
@@ -210,97 +249,12 @@ router.post("/jobs", (req, res) => {
             .status(500)
             .json({ error: "Error fetching all alerts for testing" });
         }
-
         console.log("All User Alerts in Database:", allAlerts);
 
-        // Fetch matching alerts
-        const matchQuery = `
-        SELECT u.email, a.keywords, a.location, a.category
-        FROM job_alerts a
-        JOIN users u ON a.user_id = u.user_id
-        WHERE 
-          (
-            a.keywords = '' OR 
-            EXISTS (
-              SELECT 1 FROM (
-                SELECT TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(a.keywords, ',', n.n), ',', -1)) AS keyword
-                FROM job_alerts a
-                JOIN (
-                  SELECT 1 n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
-                ) n
-                WHERE n.n <= 1 + LENGTH(a.keywords) - LENGTH(REPLACE(a.keywords, ',', ''))
-              ) kw
-              WHERE ? LIKE CONCAT('%', TRIM(kw.keyword), '%')
-            )
-          )
-          AND (? LIKE CONCAT('%', TRIM(a.location), '%') OR a.location = '')
-          AND (? LIKE CONCAT('%', TRIM(a.category), '%') OR a.category = '')
-      `;
-
-        console.log("Executing matching alerts query...");
-        console.log("Matching Query Parameters:", {
-          job_title,
-          location,
-          job_category,
+        res.status(201).json({
+          message: "Job created successfully, notifications sent to users!",
+          job_id: jobId,
         });
-
-        db.query(
-          matchQuery,
-          [job_title, location, job_category],
-          async (alertErr, matches) => {
-            if (alertErr) {
-              console.error("Error fetching matching alerts:", alertErr);
-              return res
-                .status(500)
-                .json({ error: "Error finding matching alerts" });
-            }
-
-            console.log("All matching alerts:", matches);
-
-            // Send email notifications
-            for (const match of matches) {
-              console.log("Preparing email for:", match.email);
-
-              const subject = `New Job Posting: ${job_title}`;
-              const text = `
-                A new job posting matches your alert criteria:
-                - Job Title: ${job_title}
-                - Location: ${location}
-                - Category: ${job_category}
-                - Salary Range: ${salary_range}
-                - Description: ${job_description}
-                
-                Visit Quick Job to apply now!
-              `;
-
-              const html = `
-                <h1>New Job Posting Matches Your Alert</h1>
-                <p><strong>Job Title:</strong> ${job_title}</p>
-                <p><strong>Location:</strong> ${location}</p>
-                <p><strong>Category:</strong> ${job_category}</p>
-                <p><strong>Salary Range:</strong> ${salary_range}</p>
-                <p><strong>Description:</strong> ${job_description}</p>
-                <p>Visit <a href="https://quickjob.com">Quick Job</a> to apply now!</p>
-              `;
-
-              try {
-                console.log(`Sending email to: ${match.email}`);
-                await sendEmail(match.email, subject, text, html);
-                console.log(`Email sent successfully to ${match.email}`);
-              } catch (emailError) {
-                console.error(
-                  `Error sending email to ${match.email}:`,
-                  emailError
-                );
-              }
-            }
-
-            res.status(201).json({
-              message: "Job created successfully, notifications sent to users!",
-              job_id: jobId,
-            });
-          }
-        );
       });
     }
   );
@@ -308,13 +262,46 @@ router.post("/jobs", (req, res) => {
 
 router.delete("/jobs/:id", (req, res) => {
   const jobId = req.params.id;
+
   db.query("DELETE FROM jobs WHERE job_id = ?", [jobId], (err) => {
     if (err) return res.status(500).json({ error: "Error deleting job" });
     res.status(200).json({ message: "Job deleted successfully" });
   });
 });
+router.put("/jobs/:id/toggle-status", (req, res) => {
+  const { id } = req.params;
 
-// job alerts routes
+  // Fetch the current status of the job
+  const getStatusQuery = `SELECT status FROM jobs WHERE job_id = ?`;
+  db.query(getStatusQuery, [id], (err, results) => {
+    if (err) {
+      console.error("Error fetching job status:", err);
+      return res.status(500).json({ error: "Error fetching job status" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Job not found" });
+    }
+
+    // Toggle the status
+    const currentStatus = results[0].status;
+    const newStatus = currentStatus === "Active" ? "Closed" : "Active";
+
+    // Update the job status
+    const updateQuery = `UPDATE jobs SET status = ? WHERE job_id = ?`;
+    db.query(updateQuery, [newStatus, id], (updateErr) => {
+      if (updateErr) {
+        console.error("Error updating job status:", updateErr);
+        return res.status(500).json({ error: "Error updating job status" });
+      }
+      res.status(200).json({
+        message: `Job status updated successfully to ${newStatus}`,
+        status: newStatus,
+      });
+    });
+  });
+});
+
 router.get("/job-alerts", (req, res) => {
   const { user_id } = req.query;
 
@@ -327,13 +314,11 @@ router.get("/job-alerts", (req, res) => {
     FROM job_alerts
     WHERE job_alerts.user_id = ?
   `;
-
   db.query(query, [user_id], (err, results) => {
     if (err) {
       console.error("Error fetching job alerts:", err);
       return res.status(500).json({ error: "Error fetching job alerts" });
     }
-
     res.json(results);
   });
 });
@@ -349,13 +334,11 @@ router.post("/job-alerts", (req, res) => {
     INSERT INTO job_alerts (user_id, keywords, location, category)
     VALUES (?, ?, ?, ?)
   `;
-
   db.query(query, [user_id, keywords, location, category], (err, result) => {
     if (err) {
       console.error("Error creating job alert:", err);
       return res.status(500).json({ error: "Error creating job alert" });
     }
-
     res.status(201).json({
       message: "Job alert created successfully",
       alert_id: result.insertId,
@@ -366,18 +349,14 @@ router.post("/job-alerts", (req, res) => {
 router.delete("/job-alerts/:id", (req, res) => {
   const alert_id = req.params.id;
 
-  const query = `DELETE FROM job_alerts WHERE alert_id = ?`;
-
-  db.query(query, [alert_id], (err, result) => {
+  const query = "DELETE FROM job_alerts WHERE alert_id = ?";
+  db.query(query, [alert_id], (err) => {
     if (err) {
       console.error("Error deleting job alert:", err);
       return res.status(500).json({ error: "Error deleting job alert" });
     }
-
     res.json({ message: "Job alert deleted successfully" });
   });
 });
-
-//
 
 module.exports = router;
