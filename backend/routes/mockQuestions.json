@@ -1,0 +1,21 @@
+{
+    "React": [
+        {
+            "question": "What is JSX in React?",
+            "options": ["A templating engine", "A JavaScript XML", "A framework", "A library"],
+            "correctAnswer": "A JavaScript XML"
+        },
+        {
+            "question": "What is the use of useState hook?",
+            "options": ["To manage side-effects", "To manage local state", "To manage lifecycle methods", "None of the above"],
+            "correctAnswer": "To manage local state"
+        }
+    ],
+    "JavaScript": [
+        {
+            "question": "Which company developed JavaScript?",
+            "options": ["Microsoft", "Netscape", "Google", "Oracle"],
+            "correctAnswer": "Netscape"
+        }
+    ]
+}

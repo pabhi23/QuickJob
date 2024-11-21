@@ -16,6 +16,7 @@ import ApplicationManagement from "./ApplicationManagement/ApplicationManagement
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
 import JobAlertsPage from "./JobAlerts/JobAlertsPage";
 import EmpProfUpdate from "./EmpProfUpdate/EmpProfUpdate";
+import MockTest from "./MockTest.js/MockTest";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path="/ResumeUpload" element={<ResumeUpload />} />
         <Route path="/jobalerts" element={<JobAlertsPage />} />
         <Route path="/EmpProfUpdate" element={<EmpProfUpdate />} />
+        <Route path="/mockTest" element={<MockTest />} />
       </Routes>
       <Footer />
     </Router>

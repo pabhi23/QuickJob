@@ -1,0 +1,124 @@
+/* Main container for the test */
+.mock-test {
+  background-color: #f4f7fa;
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Header section */
+.mock-test-header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: black;
+}
+
+/* Dropdown container */
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dropdown {
+  width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Container for questions and options */
+.questions-container {
+  margin-top: 20px;
+}
+
+/* Each question block */
+.question-block {
+  margin-bottom: 25px;
+}
+
+/* Question styling - ensuring text is black */
+.question {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* Options container for horizontally aligned radio buttons */
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.option-label {
+  font-size: 1rem;
+  color: black; /* Ensuring the option text is black */
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+input[type='radio'] {
+  margin-right: 5px;
+}
+
+/* Submit button container */
+.submit-button-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.submit-button {
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Result container */
+.result-container {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .dropdown-container {
+      flex-direction: column;
+  }
+
+  .dropdown {
+      width: 100%;
+  }
+
+  .options-container {
+      flex-direction: column;
+  }
+
+  .option-label {
+      margin-right: 0;
+      margin-bottom: 10px;
+  }
+
+  .submit-button {
+      width: 100%;
+  }
+}
