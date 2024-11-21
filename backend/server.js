@@ -3,11 +3,17 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const connection = require('./config/db.js');
+const mockTestRoutes = require('./routes/mockTestRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(express.json());
+
 
 app.use(cors());
+
+app.use('/api/mocktest', mockTestRoutes);
+
 app.use(bodyParser.json());
 
 app.use('/api', userRoutes);
@@ -15,11 +21,9 @@ app.use('/api', userRoutes);
 app.post('/api/resume', (req, res) => {
   const { firstName, lastName, address, jobTitle, linkedinId, experience, education, skills } = req.body;
 
-  // SQL query to insert resume data
   const query = `INSERT INTO resumes (first_name, last_name, address, job_title, linkedin_id, experience, education, skills)
                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
-  // Insert data into the database
   connection.query(query, [firstName, lastName, address, jobTitle, linkedinId, JSON.stringify(experience), JSON.stringify(education), JSON.stringify(skills)], (err, result) => {
     if (err) {
       console.error('Error saving resume data:', err);

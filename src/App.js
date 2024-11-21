@@ -14,6 +14,7 @@ import JobSearch from "./JobSearch/JobSearch";
 import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
 import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
+import MockTest from "./MockTest/MockTest";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/ApplicationManagement" element={<ApplicationManagement />} />
         <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
         <Route path="/ResumeUpload" element={<ResumeUpload />} />
+        <Route path="/mockTest" element={<MockTest />} />
       </Routes>
       <Footer />
     </Router>
