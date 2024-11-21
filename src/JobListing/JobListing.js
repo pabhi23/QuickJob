@@ -86,7 +86,11 @@ const JobListing = () => {
         })
         .then((data) => {
           console.log('Application successful:', data);
-          setAppliedJobs((prev) => new Set(prev).add(jobId)); 
+          setAppliedJobs((prev) =>{ 
+            const updatedSet = new Set(prev); 
+            updatedSet.add(jobId);
+            return updatedSet;
+          }); 
         })
         .catch((error) => {
           console.error('Error applying for the job:', error);

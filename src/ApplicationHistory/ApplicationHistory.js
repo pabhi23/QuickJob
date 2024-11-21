@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './ApplicationHistory.css';
 
-const ApplicationHistory = ({ userId }) => {
+const ApplicationHistory = () => {
+
   const [applications, setApplications] = useState([]);
-
+  const userId = 1;
   useEffect(() => {
-    const fetchApplicationHistory = async () => {
-      try {
-        const response = await fetch(`/api/application-history/${userId}`);
-        if (response.ok) {
-          const data = await response.json();
-          setApplications(data);
-        } else {
-          console.error('Failed to fetch application history');
+    fetch(`/api/applications/history/${userId}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
         }
-      } catch (error) {
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Fetched application history:', data);
+        setApplications(data);
+      })
+      .catch((error) => {
         console.error('Error fetching application history:', error);
-      }
-    };
-
-    fetchApplicationHistory();
+      });
   }, [userId]);
-
   return (
     <div className="application-history">
       <h2>Application History</h2>

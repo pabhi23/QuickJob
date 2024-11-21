@@ -131,25 +131,25 @@ router.get('/jobs', (req, res) => {
     });
   });
 
-  router.get('/api/application-history/:userId', (req, res) => {
-    const { userId } = req.params;
+router.get('/applications/history/:userId', (req, res) => {
+  const userId = req.params.userId;
 
-    const query = `
-        SELECT jobs.job_title, applications.status, applications.applied_at 
-        FROM applications 
-        JOIN jobs ON applications.job_id = jobs.job_id
-        WHERE applications.user_id = ?
-        ORDER BY applications.applied_at DESC;
-    `;
+  const query = `
+    SELECT a.application_id, a.status, a.applied_at, j.job_title
+    FROM applications a
+    JOIN jobs j ON a.job_id = j.job_id
+    WHERE a.user_id = ?
+  `;
 
-    db.query(query, [userId], (err, results) => {
-        if (err) {
-            console.error('Error fetching application history:', err);
-            return res.status(500).json({ error: 'Error fetching application history' });
-        }
-        res.json(results);
-    });
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error fetching application history:', err);
+      return res.status(500).json({ error: 'Failed to fetch application history' });
+    }
+    res.status(200).json(results);
   });
+});
+
 // Apply Job
   router.post('/applications', (req, res) => {
     const { jobId, userId } = req.body;
