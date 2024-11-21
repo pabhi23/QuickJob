@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './MockTest.css'; // Importing the CSS
+import './MockTest.css';
 
 const MockTest = () => {
   const [topic, setTopic] = useState('');
@@ -10,6 +10,7 @@ const MockTest = () => {
 
   const topics = ['React', 'JavaScript', 'HTML', 'Angular']; // Topics for dropdown
 
+  // Fetch questions for selected topic
   const handleTopicChange = async (e) => {
     const selectedTopic = e.target.value;
     setTopic(selectedTopic);
@@ -27,20 +28,27 @@ const MockTest = () => {
     }
   };
 
+  // Store selected answer for each question
   const handleOptionSelect = (questionId, selectedOption) => {
     setAnswers((prev) => ({
       ...prev,
-      [questionId]: selectedOption,
+      [questionId]: selectedOption, // Store answer by question ID
     }));
   };
 
+  // Calculate score on submit
   const handleSubmit = () => {
     let correctCount = 0;
-    questions.forEach((q) => {
-      if (answers[q.id] === q.correctAnswer) {
+
+    // Loop through the questions and compare selected answer with correct answer
+    questions.forEach((q, index) => {
+      const userAnswer = answers[index];
+      if (userAnswer === q.correct) {
         correctCount++;
       }
     });
+
+    // Set the score after submission
     setScore(correctCount);
   };
 
@@ -61,17 +69,17 @@ const MockTest = () => {
 
       {questions.length > 0 && (
         <div className="questions-container">
-          {questions.map((q) => (
-            <div key={q.id} className="question-block">
+          {questions.map((q, index) => (
+            <div key={index} className="question-block">
               <h3 className="question">{q.question}</h3>
               <div className="options-container">
-                {q.options.map((option, index) => (
-                  <label key={index} className="option-label">
+                {q.options.map((option, optIndex) => (
+                  <label key={optIndex} className="option-label">
                     <input
                       type="radio"
-                      name={`question-${q.id}`}
+                      name={`question-${index}`}
                       value={option}
-                      onChange={() => handleOptionSelect(q.id, option)}
+                      onChange={() => handleOptionSelect(index, option)} // Store answer when an option is selected
                     />
                     {option}
                   </label>
