@@ -6,6 +6,7 @@ const JobListing = () => {
   const [searchQuery, setSearchQuery] = useState(''); // Search query state
   const [appliedJobs, setAppliedJobs] = useState(new Set());
   const userId = 1;
+  const [savedJobs, setSavedJobs] = useState(new Set());
 
   useEffect(() => {
     fetch('/api/jobs')
@@ -36,6 +37,14 @@ const JobListing = () => {
         setAppliedJobs(new Set(data)); 
       })
       .catch((error) => console.error('Error fetching applied jobs:', error));
+  }, [userId]);
+
+  
+  useEffect(() => {
+    fetch(`/api/saved-jobs/${userId}`)
+      .then((response) => response.json())
+      .then((data) => setSavedJobs(new Set(data.map((job) => job.job_id))))
+      .catch((error) => console.error('Error fetching saved jobs:', error));
   }, [userId]);
 
   const handleApply = (jobId) => {
@@ -98,6 +107,46 @@ const JobListing = () => {
         });
     }
   };  
+  const handleSave = (jobId) => {
+    if (savedJobs.has(jobId)) {
+      // Remove job from saved jobs
+      fetch('/api/saved-jobs', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, jobId }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to remove saved job');
+          }
+          setSavedJobs((prev) => {
+            const updated = new Set(prev);
+            updated.delete(jobId);
+            return updated;
+          });
+        })
+        .catch((error) => console.error('Error removing saved job:', error));
+    } else {
+      // Save job
+      fetch('/api/saved-jobs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId, jobId }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to save job');
+          }
+          setSavedJobs((prev) => new Set(prev).add(jobId));
+        })
+        .catch((error) => console.error('Error saving job:', error));
+    }
+  };
+
 
   const filteredJobs = jobs.filter((job) =>
     job.jobRole.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -123,6 +172,7 @@ const JobListing = () => {
             <th>Skill</th>
             <th>Salary Range</th>
             <th>Apply</th>
+            <th>Saved</th>
           </tr>
         </thead>
         <tbody>
@@ -135,6 +185,12 @@ const JobListing = () => {
                 <td><button className="apply-button" onClick={() => handleApply(job.job_id)}
                   > {appliedJobs.has(job.job_id) ? 'Applied' : 'Apply'}
                 </button></td>
+                <td>  <button
+              className="save-button"
+              onClick={() => handleSave(job.job_id)}
+            >
+              {savedJobs.has(job.job_id) ? 'Saved' : 'Save'}
+            </button></td>
               </tr>
             ))
           ) : (
@@ -144,6 +200,9 @@ const JobListing = () => {
           )}
         </tbody>
       </table>
+      {/*<a href="/saved-jobs" className="saved-jobs-link">
+      View Saved Jobs
+      </a>*/}
     </div>
   );
 };

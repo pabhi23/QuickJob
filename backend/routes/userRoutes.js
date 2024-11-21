@@ -218,5 +218,83 @@ router.get('/applications/history/:userId', (req, res) => {
     });
   });
   
-  
+ // Save a job
+ router.post('/saved-jobs', (req, res) => {
+  const { jobId, userId } = req.body;
+
+  console.log('Payload received by backend:', req.body);
+
+  if (!jobId || !userId) {
+    return res.status(400).json({ error: 'Job ID and User ID are required' });
+  }
+
+  const checkQuery = 'SELECT * FROM saved_jobs WHERE user_id = ? AND job_id = ?';
+  connection.query(checkQuery, [userId, jobId], (err, results) => {
+    if (err) {
+      console.error('Error checking for existing saved job:', err);
+      return res.status(500).json({ error: 'Database error' });
+    }
+
+    if (results.length > 0) {
+      return res.status(200).json({ message: 'Job already saved!' });
+    }
+
+    const insertQuery = `
+      INSERT INTO saved_jobs (user_id, job_id)
+      VALUES (?, ?);
+    `;
+    connection.query(insertQuery, [userId, jobId], (err, result) => {
+      if (err) {
+        console.error('Error saving the job:', err);
+        return res.status(500).json({ error: 'Failed to save the job' });
+      }
+      res.status(201).json({ message: 'Job saved successfully!' });
+    });
+  });
+});
+
+
+ // Delete a saved job
+ router.delete('/saved-jobs', (req, res) => {
+  const { jobId, userId } = req.body;
+
+  if (!jobId || !userId) {
+    return res.status(400).json({ error: 'Job ID and User ID are required' });
+  }
+
+  const query = `
+    DELETE FROM saved_jobs
+    WHERE user_id = ? AND job_id = ?;
+  `;
+
+  connection.query(query, [userId, jobId], (err, result) => {
+    if (err) {
+      console.error('Error removing saved job:', err);
+      return res.status(500).json({ error: 'Failed to remove saved job' });
+    }
+    res.status(200).json({ message: 'Job removed from saved jobs!' });
+  });
+});
+
+
+// Fetch saved jobs for a user
+router.get('/saved-jobs/:userId', (req, res) => {
+  const userId = req.params.userId;
+
+  const query = `
+    SELECT j.job_id, j.job_title, j.job_category, j.location, j.salary_range
+    FROM saved_jobs sj
+    INNER JOIN jobs j ON sj.job_id = j.job_id
+    WHERE sj.user_id = ?;
+  `;
+
+  connection.query(query, [userId], (err, results) => {
+    if (err) {
+      console.error('Error fetching saved jobs:', err);
+      return res.status(500).json({ error: 'Failed to fetch saved jobs' });
+    }
+    res.status(200).json(results); // Send job details to the frontend
+  });
+});
+
 module.exports = router;

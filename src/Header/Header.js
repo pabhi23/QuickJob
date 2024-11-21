@@ -23,6 +23,8 @@ const Header = () => {
           <Link to="/account" className="nav-link">Account</Link>
           <Link to="/joblisting" className="nav-link">Job Listing</Link>
           <Link to="/applicationhistory" className="nav-link">Application History</Link>
+          <Link to="/savedjobs" className="nav-link">Saved Jobs</Link>
+
         </nav>
         <div className="user-info">
           <div className="dark-mode-toggle">

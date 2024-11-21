@@ -1,27 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import './SavedJobs.css';
 
-const SavedJobs = ({ userId }) => {
+const SavedJobs = () => {
   const [savedJobs, setSavedJobs] = useState([]);
+  const userId = 1;
+  useEffect(() => {
+    fetch(`/api/saved-jobs/${userId}`)
+      .then((response) => response.json())
+      .then((data) => setSavedJobs(data))
+      .catch((error) => console.error('Error fetching saved jobs:', error));
+  }, [userId]);
   return (
-    <div className="saved-jobs">
+    <div className="saved-jobs-container">
       <h2>Saved Jobs</h2>
       {savedJobs.length > 0 ? (
-        <ul className="saved-jobs-list">
+        <table className="saved-jobs-table">
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Category</th>
+              <th>Location</th>
+              <th>Salary Range</th>
+              {/*<th>Action</th>*/}
+            </tr>
+          </thead>
+          <tbody>
           {savedJobs.map((job) => (
-            <li key={job.job_id} className="saved-job-item">
-              <h3>{job.job_title}</h3>
-              <p>Category: {job.job_category}</p>
-              <p>Location: {job.location}</p>
-              <p>Salary Range: {job.salary_range}</p>
-            </li>
+            <tr key={job.job_id}>
+              <td>{job.job_title}</td>
+              <td>{job.job_category}</td>
+              <td>{job.location}</td>
+              <td>{job.salary_range}</td>
+              </tr>
           ))}
-        </ul>
+        </tbody>
+        </table>
       ) : (
         <p>No saved jobs found.</p>
       )}
     </div>
   );
 };
-
 export default SavedJobs;
