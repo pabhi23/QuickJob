@@ -1,160 +1,121 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --background-color: #ffffff;
-  --text-color: #1a1a1a;
-  --link-color: #0066cc;
-  --button-bg: #007bff;
-  --button-text-color: #ffffff;
-  --card-bg: #f8f9fa;
-}
-
 body {
   font-family: 'Roboto', sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
-  line-height: 1.6;
-  margin: 0;
 }
 
-body.dark-mode {
-  --background-color: #0d1117;
-  --text-color: #e0e0e0;
-  --link-color: #58a6ff;
-  --button-bg: #21262d;
-  --button-text-color: #ffffff;
-  --card-bg: #161b22;
+.job-alerts-page {
+  padding: 20px;
 }
 
-.header {
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
-  padding: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dark-mode-toggle {
-  background-color: transparent;
-  color: var(--button-text-color);
-  border: 1px solid var(--button-text-color);
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: opacity 0.3s;
-  border-radius: 4px;
-}
-
-.dark-mode-toggle:hover {
-  opacity: 0.8;
-}
-
-.job-alert-subscription {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-  flex-direction: column;
-}
-
-.job-alert-subscription input {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  margin-right: 10px;
-  transition: border-color 0.3s;
-  width: 100%;
-  max-width: 500px;
-  color: var(--text-color);
-  background-color: var(--background-color);
-}
-
-.job-alert-subscription input:focus {
-  border-color: var(--link-color);
-}
-
-.job-alert-subscription button {
-  background-color: var(--button-bg);
-  color: var(--button-text-color);
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 1rem;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  width: 30%;
-  margin-top: 20px;
-}
-
-.job-alert-subscription button:hover {
-  background-color: #0056b3;
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .job-alerts-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
-.job-alerts-list {
-  list-style: none;
-  padding: 0;
+.form-container {
+  flex: 1;
+  max-width: 500px; 
 }
 
-.job-alert {
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 15px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+.job-alert-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.job-alert:hover {
-  transform: translateY(-5px);
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.job-alert h2 {
-  margin-bottom: 10px;
-  color: var(--text-color);
-  font-size: 1.25rem;
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.job-alert p {
-  margin: 5px 0;
-}
-
-.footer {
+.mic-button {
   background-color: var(--button-bg);
   color: var(--button-text-color);
-  padding: 15px;
-  text-align: center;
-  margin-top: 20px;
-  border-radius: 0 0 8px 8px;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
 }
 
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .dark-mode-toggle {
-    margin-top: 10px;
-    width: 100%;
-  }
-  .job-alert-subscription {
-    flex-direction: column;
-  }
-  .job-alert-subscription input,
-  .job-alert-subscription button {
-    width: 100%;
-    margin: 5px 0;
-  }
+.mic-button:hover {
+  background-color: #0056b3;
+}
+
+.create-alert-button {
+  padding: 10px;
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.create-alert-button:hover {
+  background-color: #0056b3;
+}
+
+.table-container {
+  flex: 2;
+}
+
+.job-alerts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.job-alerts-table th,
+.job-alerts-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.job-alerts-table th {
+  background-color: var(--button-bg);
+  color: var(--button-text-color);
+}
+
+.job-alerts-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.job-alerts-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
 }

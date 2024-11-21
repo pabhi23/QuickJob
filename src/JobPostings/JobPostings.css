@@ -77,16 +77,66 @@ body.dark-mode .accordion-header {
 
 .accordion-content {
   margin-top: 10px;
-  background-color: #f9f9f9;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }
 
-body.dark-mode .accordion-content {
+.input-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.input-group input,
+.input-group textarea {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.input-group textarea {
+  height: 80px;
+}
+
+body.dark-mode .input-group input,
+body.dark-mode .input-group textarea {
   background-color: #2a2a2a;
-  color: #e0e0e0;
   border: 1px solid #333;
+  color: #e0e0e0;
+}
+
+.mic-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.mic-button:hover {
+  background-color: #0056b3;
+}
+
+.create-job-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-job-button:hover {
+  background-color: #0056b3;
 }
 
 .filters {
