@@ -14,7 +14,7 @@ import JobSearch from "./JobSearch/JobSearch";
 import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
 import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
-import MockTest from "./MockTest/MockTest";
+import MockTest from "./MockTest.js/MockTest";
 
 function App() {
   return (
