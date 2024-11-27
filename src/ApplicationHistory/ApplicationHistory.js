@@ -4,6 +4,7 @@ import './ApplicationHistory.css';
 const ApplicationHistory = () => {
 
   const [applications, setApplications] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const userId = 1;
   useEffect(() => {
     fetch(`/api/applications/history/${userId}`)
@@ -21,11 +22,25 @@ const ApplicationHistory = () => {
         console.error('Error fetching application history:', error);
       });
   }, [userId]);
+  const filteredApplications = applications.filter(
+    (app) =>
+      app.job_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      app.status.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="page-container">
     <div className="content-wrap">
     <div className="application-history">
       <h2>Application History</h2>
+      <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search applications..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+          </div>
       <table className="application-history-table">
         <thead>
           <tr>
@@ -35,8 +50,8 @@ const ApplicationHistory = () => {
           </tr>
         </thead>
         <tbody>
-          {applications.length > 0 ? (
-            applications.map((app) => (
+          {filteredApplications.length > 0 ? (
+            filteredApplications.map((app) => (
               <tr key={app.application_id}>
                 <td>{app.job_title}</td>
                 <td>{app.status}</td>

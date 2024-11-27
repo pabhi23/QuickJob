@@ -3,6 +3,7 @@ import './SavedJobs.css';
 
 const SavedJobs = () => {
   const [savedJobs, setSavedJobs] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const userId = 1;
   useEffect(() => {
     fetch(`/api/saved-jobs/${userId}`)
@@ -10,12 +11,27 @@ const SavedJobs = () => {
       .then((data) => setSavedJobs(data))
       .catch((error) => console.error('Error fetching saved jobs:', error));
   }, [userId]);
+  const filteredJobs = savedJobs.filter(
+    (job) =>
+      job.job_title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.job_category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   return (
     <div className="page-container">
     <div className="content-wrap">
     <div className="saved-jobs-container">
+    <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search saved jobs..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+          </div>
       <h2>Saved Jobs</h2>
-      {savedJobs.length > 0 ? (
+      {filteredJobs.length > 0 ? (
         <table className="saved-jobs-table">
           <thead>
             <tr>
@@ -27,7 +43,7 @@ const SavedJobs = () => {
             </tr>
           </thead>
           <tbody>
-          {savedJobs.map((job) => (
+          {filteredJobs.map((job) => (
             <tr key={job.job_id}>
               <td>{job.job_title}</td>
               <td>{job.job_category}</td>
