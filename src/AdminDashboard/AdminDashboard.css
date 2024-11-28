@@ -1,63 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  color: #212529;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
 .admin-dashboard-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .job-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .job-table th, .job-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .job-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .job-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .status-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .status-button.active {
-    background-color: #28a745; 
-  }
-  
-  .status-button.closed {
-    background-color: #dc3545; 
-  }
-  
-  .modify-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modify-button:hover {
-    background-color: #0056b3;
-  }
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+body.dark-mode .admin-dashboard-container {
+  background-color: #1e1e1e;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: inherit;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .job-table {
+  background-color: #1e1e1e;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.job-table th,
+.job-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  color: #212529;
+}
+
+body.dark-mode .job-table th,
+body.dark-mode .job-table td {
+  border-bottom: 1px solid #333;
+  color: #e0e0e0;
+}
+
+.job-table th {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+body.dark-mode .job-table th {
+  background-color: #0056b3;
+  color: white;
+}
+
+.job-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+body.dark-mode .job-table tr:hover {
+  background-color: #2a2a2a;
+}
+
+.status-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.status-button.active {
+  background-color: #28a745;
+}
+
+body.dark-mode .status-button.active {
+  background-color: #218838;
+}
+
+.status-button.closed {
+  background-color: #dc3545;
+}
+
+body.dark-mode .status-button.closed {
+  background-color: #c82333;
+}
+
+.status-button:hover {
+  opacity: 0.9;
+}
+
+.modify-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+body.dark-mode .modify-button {
+  background-color: #0056b3;
+}
+
+.modify-button:hover {
+  background-color: #0056b3;
+}
+
+body.dark-mode .modify-button:hover {
+  background-color: #004085;
+}

@@ -14,6 +14,8 @@ import JobSearch from "./JobSearch/JobSearch";
 import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
 import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
+import JobAlertsPage from "./JobAlerts/JobAlertsPage";
+import EmpProfUpdate from "./EmpProfUpdate/EmpProfUpdate";
 import MockTest from "./MockTest.js/MockTest";
 
 function App() {
@@ -29,9 +31,14 @@ function App() {
         <Route path="/Account" element={<AccountPage />} />
         <Route path="/JobPostings" element={<JobPostings />} />
         <Route path="/search" element={<JobSearch />} />
-        <Route path="/ApplicationManagement" element={<ApplicationManagement />} />
+        <Route
+          path="/ApplicationManagement"
+          element={<ApplicationManagement />}
+        />
         <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
         <Route path="/ResumeUpload" element={<ResumeUpload />} />
+        <Route path="/jobalerts" element={<JobAlertsPage />} />
+        <Route path="/EmpProfUpdate" element={<EmpProfUpdate />} />
         <Route path="/mockTest" element={<MockTest />} />
       </Routes>
       <Footer />
