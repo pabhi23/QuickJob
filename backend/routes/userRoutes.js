@@ -359,4 +359,16 @@ router.delete("/job-alerts/:id", (req, res) => {
   });
 });
 
+// Fetch All Payments
+router.get("/payments", (req, res) => {
+  const query = "SELECT * FROM payments";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching payments:", err);
+      return res.status(500).json({ error: "Error fetching payments" });
+    }
+    res.json(results);
+  });
+});
+
 module.exports = router;
