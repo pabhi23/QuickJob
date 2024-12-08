@@ -17,6 +17,7 @@ import ResumeUpload from "./ResumeUpload/ResumeUpload";
 import JobAlertsPage from "./JobAlerts/JobAlertsPage";
 import EmpProfUpdate from "./EmpProfUpdate/EmpProfUpdate";
 import PaymentGateway from "./PaymentGateway/PaymentGateway";
+import MockTest from "./MockTest.js/MockTest";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/jobalerts" element={<JobAlertsPage />} />
         <Route path="/EmpProfUpdate" element={<EmpProfUpdate />} />
         <Route path="/PaymentGateway" element={<PaymentGateway />} />
+        <Route path="/mockTest" element={<MockTest />} />
       </Routes>
       <Footer />
     </Router>
