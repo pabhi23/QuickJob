@@ -139,6 +139,60 @@ app.put("/applications/:id/status", async (req, res) => {
   }
 });
 
+// Payment Route
+app.post("/api/payment", (req, res) => {
+  const { fullName, email, phone, cardName, cardNumber, cvv } = req.body;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\d{9}$/; 
+  const cardNumberRegex = /^\d{16}$/; 
+  const cvvRegex = /^\d{3}$/; 
+
+  if (!fullName || !email || !phone || !cardName || !cardNumber || !cvv) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: "Invalid email format" });
+  }
+
+  if (!phoneRegex.test(phone)) {
+    return res
+      .status(400)
+      .json({ error: "Phone number must be exactly 9 digits and numeric" });
+  }
+
+  if (!cardNumberRegex.test(cardNumber)) {
+    return res
+      .status(400)
+      .json({
+        error: "Credit card number must be exactly 16 digits and numeric",
+      });
+  }
+
+  if (!cvvRegex.test(cvv)) {
+    return res.status(400).json({ error: "CVV must be exactly 3 digits" });
+  }
+
+  const sql =
+    "INSERT INTO payments (full_name, email, phone, card_name, card_number, cvv) VALUES (?, ?, ?, ?, ?, ?)";
+  db.query(
+    sql,
+    [fullName, email, phone, cardName, cardNumber, cvv],
+    (err, result) => {
+      if (err) {
+        console.error("Error processing payment:", err);
+        return res.status(500).json({ error: "Error processing payment" });
+      }
+      res
+        .status(201)
+        .json({ message: "Payment processed successfully!", paymentId: result.insertId });
+    }
+  );
+});
+
+
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
