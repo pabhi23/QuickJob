@@ -15,6 +15,12 @@ import ResumeBuilder from "./ResumeBuilder/ResumeBuilder";
 import ApplicationManagement from "./ApplicationManagement/ApplicationManagement";
 import ResumeUpload from "./ResumeUpload/ResumeUpload";
 import JobAlertsPage from "./JobAlerts/JobAlertsPage";
+import EmpProfUpdate from "./EmpProfUpdate/EmpProfUpdate";
+import MockTest from "./MockTest.js/MockTest";
+import ApplicationHistory from "./ApplicationHistory/ApplicationHistory";
+import SavedJobs from "./SavedJobs/SavedJobs";
+import PaymentGateway from "./PaymentGateway/PaymentGateway";
+import AdminPaymentDashboard from "./AdminPaymentDashboard/AdminPaymentDashboard";
 
 function App() {
   return (
@@ -27,7 +33,7 @@ function App() {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="/Account" element={<AccountPage />} />
-        <Route path="/JobPostings" element={<JobPostings />} />
+        <Route path="/JobPosting" element={<JobPostings />} />
         <Route path="/search" element={<JobSearch />} />
         <Route
           path="/ApplicationManagement"
@@ -36,6 +42,12 @@ function App() {
         <Route path="/ResumeBuilder" element={<ResumeBuilder />} />
         <Route path="/ResumeUpload" element={<ResumeUpload />} />
         <Route path="/jobalerts" element={<JobAlertsPage />} />
+        <Route path="/EmpProfUpdate" element={<EmpProfUpdate />} />
+        <Route path="/mockTest" element={<MockTest />} />
+        <Route path="/PaymentGateway" element={<PaymentGateway />} />
+        <Route path="/ApplicationHistory" element={<ApplicationHistory />} />
+        <Route path="/SavedJobs" element={<SavedJobs />} />
+        <Route path="/payment" element={<AdminPaymentDashboard />} />
       </Routes>
       <Footer />
     </Router>

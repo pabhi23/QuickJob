@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./JobPostings.css";
+import { apiClient } from "../api/apiClient";
 
 const JobPostings = () => {
   const [jobs, setJobs] = useState([]);
@@ -24,7 +25,7 @@ const JobPostings = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/jobs", {
+      const response = await apiClient.get("/jobs", {
         params: { ...filters },
       });
       setJobs(response.data);
@@ -41,7 +42,7 @@ const JobPostings = () => {
   const handleCreateJob = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/jobs", {
+      await apiClient.post("/jobs", {
         employer_id: employerId,
         ...newJob,
       });
@@ -61,11 +62,13 @@ const JobPostings = () => {
   };
 
   const handleDeleteJob = async (jobId) => {
-    try {
-      await axios.delete(http://localhost:5000/api/jobs/${jobId});
-      fetchJobs();
-    } catch (error) {
-      console.error("Error deleting job:", error);
+    if (window.confirm("Are you sure you want to delete this job?")) {
+      try {
+        await apiClient.delete(`/jobs/${jobId}`);
+        fetchJobs();
+      } catch (error) {
+        console.error("Error deleting job:", error);
+      }
     }
   };
 
@@ -87,7 +90,7 @@ const JobPostings = () => {
 
   const handleUpdateJob = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/jobs/${editingJob.job_id}`, {
+      await apiClient.put(`jobs/${editingJob.job_id}`, {
         ...editingJob,
       });
       fetchJobs();
@@ -262,4 +265,4 @@ const JobPostings = () => {
   );
 };
 
-export default JobPostings;
+export default JobPostings;

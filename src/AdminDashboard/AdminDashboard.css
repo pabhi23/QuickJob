@@ -1,111 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9 !important;
+  color: #212529 !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+}
+
 .admin-dashboard-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    min-height: 100vh;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .job-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .job-table th, .job-table td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .job-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .job-table tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .status-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .status-button.active {
-    background-color: #28a745; 
-  }
-  
-  .status-button.closed {
-    background-color: #dc3545; 
-  }
-  
-  .modify-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modify-button:hover {
-    background-color: #0056b3;
-  }.status-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .status-button.active {
-    background-color: #28a745 !important;
-  }
-  
-  .status-button.closed {
-    background-color: #dc3545 !important;
-  }
-  
-  .modify-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .modify-button:hover {
-    background-color: #0056b3;
-  }
-  .status-button {
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .status-button.active {
-    background-color: #28a745; /* Green for Active */
-  }
-  
-  .status-button.closed {
-    background-color: #dc3545; /* Red for Closed */
-  }
-  
-  .status-button:hover {
-    opacity: 0.9;
-  }
-  
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f9f9f9 !important;
+}
+
+body.dark-mode .admin-dashboard-container {
+  background-color: #1e1e1e !important;
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: inherit !important;
+}
+
+.job-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white !important;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+body.dark-mode .job-table {
+  background-color: #1e1e1e !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+.job-table th,
+.job-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd !important;
+  color: #212529 !important;
+}
+
+body.dark-mode .job-table th,
+body.dark-mode .job-table td {
+  border-bottom: 1px solid #333 !important;
+  color: #e0e0e0 !important;
+}
+
+.job-table th {
+  background-color: #007bff !important;
+  color: white !important;
+  font-weight: bold !important;
+}
+
+body.dark-mode .job-table th {
+  background-color: #0056b3 !important;
+  color: white !important;
+}
+
+.job-table tr:hover {
+  background-color: #f1f1f1 !important;
+}
+
+body.dark-mode .job-table tr:hover {
+  background-color: #2a2a2a !important;
+}
+
+.status-button {
+  padding: 8px 12px;
+  border: none !important;
+  border-radius: 5px !important;
+  color: white !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+}
+
+.status-button.active {
+  background-color: #28a745 !important;
+}
+
+body.dark-mode .status-button.active {
+  background-color: #218838 !important;
+}
+
+.status-button.closed {
+  background-color: #dc3545 !important;
+}
+
+body.dark-mode .status-button.closed {
+  background-color: #c82333 !important;
+}
+
+.status-button:hover {
+  opacity: 0.9 !important;
+}
+
+.modify-button {
+  background-color: #007bff !important;
+  color: white !important;
+  border: none !important;
+  padding: 8px 12px !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+}
+
+body.dark-mode .modify-button {
+  background-color: #0056b3 !important;
+}
+
+.modify-button:hover {
+  background-color: #0056b3 !important;
+}
+
+body.dark-mode .modify-button:hover {
+  background-color: #004085 !important;
+}

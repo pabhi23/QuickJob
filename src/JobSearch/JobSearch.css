@@ -86,8 +86,16 @@
   border-radius: 4px;
   font-size: 14px;
   cursor: pointer;
+  margin: 10px;
+  width: 450px;
 }
 
 .apply-button:hover {
   background-color: #0056b3;
+}
+
+
+.save-button{
+  margin: 10px;
+  width: 450px;
 }

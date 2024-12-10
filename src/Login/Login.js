@@ -20,13 +20,12 @@ const LoginPage = () => {
       });
 
       const data = await response.json();
-
       if (response.ok) {
-        // Assuming the backend returns a token and user data
         sessionStorage.setItem("token", data.token);
         sessionStorage.setItem("firstName", data.firstName);
         sessionStorage.setItem("lastName", data.lastName);
         sessionStorage.setItem("registerAs", data.registerAs);
+        sessionStorage.setItem("profilePic", data.profilePic);
         if (data.registerAs === "employer") {
           sessionStorage.setItem("employerId", data.user_id);
         } else {

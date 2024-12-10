@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './ResumeUpload.css';
+import '../ResumeUpload/ResumeUpload.css';
 
 const ResumeUpload = ({ title }) => {
     const [file, setFile] = useState(null);

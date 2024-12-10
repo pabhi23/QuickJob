@@ -3,10 +3,16 @@
     color: white;
     text-align: center;
     padding: 15px 0;
-    width: 100%;
     font-size: 16px;
-    position: relative; 
+
+    /* Make the footer stick to the bottom of the window */
+    position: fixed;
     bottom: 0;
+    left: 0;
+    width: 100%;
+
+    /* Ensuring it appears on top of other elements if needed */
+    z-index: 999;
 }
 
 .footer p {
