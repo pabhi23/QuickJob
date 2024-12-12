@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./JobAlertsPage.css";
+import Seo from './Seo';
 
 const JobAlertsPage = () => {
   const [jobAlerts, setJobAlerts] = useState([]);
@@ -95,6 +96,7 @@ const JobAlertsPage = () => {
 
   return (
     <div className="job-alerts-page">
+      <Seo/>
       <h2>My Job Alerts</h2>
       <div className="job-alerts-container">
         <div className="form-container">
