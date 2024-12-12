@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet";
 import PersonalInfo from "../PersonalInfo/PersonalInfo.js";
 import Experience from "../Experience/Experience.js";
 import Education from "../Education/Education.js";
@@ -53,39 +54,28 @@ const ResumeBuilder = () => {
     const pdf = new jsPDF();
     pdf.setFont("Times", "Normal");
 
-    let currentY = 20; // Starting Y position for text
+    let currentY = 20;
 
     const addPageIfNeeded = () => {
       if (currentY > 280) {
-        // Adjust this threshold if necessary
         pdf.addPage();
-        currentY = 20; // Reset Y position for new page
+        currentY = 20;
       }
     };
 
     // Header Information
     pdf.setFontSize(16);
-    pdf.text(`${formData.firstName} ${formData.lastName}`, 105, currentY, {
-      align: "center",
-    });
+    pdf.text(`${formData.firstName} ${formData.lastName}`, 105, currentY, { align: "center" });
     currentY += 10;
 
     pdf.setFontSize(12);
-    pdf.text(`Desired Job Title: ${formData.jobTitle}`, 105, currentY, {
-      align: "center",
-    });
+    pdf.text(`Desired Job Title: ${formData.jobTitle}`, 105, currentY, { align: "center" });
     currentY += 10;
-    pdf.text(`Address: ${formData.address}`, 105, currentY, {
-      align: "center",
-    });
+    pdf.text(`Address: ${formData.address}`, 105, currentY, { align: "center" });
     currentY += 5;
-    pdf.text(`Phone: ${formData.phone || ""}`, 105, currentY, {
-      align: "center",
-    });
+    pdf.text(`Phone: ${formData.phone || ""}`, 105, currentY, { align: "center" });
     currentY += 5;
-    pdf.text(`Email: ${formData.email || ""}`, 105, currentY, {
-      align: "center",
-    });
+    pdf.text(`Email: ${formData.email || ""}`, 105, currentY, { align: "center" });
     currentY += 15;
 
     // Summary Section
@@ -121,9 +111,7 @@ const ResumeBuilder = () => {
     pdf.setFontSize(12);
     formData.experience.forEach((exp) => {
       pdf.text(
-        `${exp.position} at ${exp.company} (${exp.startDate} - ${
-          exp.endDate || "Present"
-        })`,
+        `${exp.position} at ${exp.company} (${exp.startDate} - ${exp.endDate || "Present"})`,
         20,
         currentY
       );
@@ -132,17 +120,14 @@ const ResumeBuilder = () => {
 
       exp.responsibilities.forEach((resp) => {
         const wrappedText = pdf.splitTextToSize(resp, 160);
-
         wrappedText.forEach((line) => {
-          pdf.circle(18, currentY, 0.5); // Bullet point
+          pdf.circle(18, currentY, 0.5);
           pdf.text(line, 22, currentY);
           currentY += 5;
           addPageIfNeeded();
         });
-
         currentY += 3;
       });
-
       currentY += 10;
     });
 
@@ -152,11 +137,7 @@ const ResumeBuilder = () => {
     currentY += 10;
     pdf.setFontSize(12);
     formData.education.forEach((edu) => {
-      pdf.text(
-        `${edu.degree} from ${edu.institution} (${edu.graduationYear})`,
-        20,
-        currentY
-      );
+      pdf.text(`${edu.degree} from ${edu.institution} (${edu.graduationYear})`, 20, currentY);
       currentY += 10;
       addPageIfNeeded();
     });
@@ -167,36 +148,29 @@ const ResumeBuilder = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Interactive Resume Builder | Generate Professional Resumes</title>
+        <meta name="description" content="Create and customize professional resumes online with our interactive Resume Builder tool. Generate PDFs instantly!" />
+        <meta name="keywords" content="resume builder, PDF resume, online resume creator, professional CV builder, interactive resume tool" />
+        <meta property="og:title" content="Interactive Resume Builder Tool" />
+        <meta property="og:description" content="Quickly create and download professional resumes as PDFs using our interactive Resume Builder tool." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://your-website.com" />
+        <meta property="og:image" content="https://your-website.com/preview-image.jpg" />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       {step === 1 && (
-        <PersonalInfo
-          nextStep={nextStep}
-          handleChange={handleChange}
-          formData={formData}
-        />
+        <PersonalInfo nextStep={nextStep} handleChange={handleChange} formData={formData} />
       )}
       {step === 2 && (
-        <Experience
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          formData={formData}
-        />
+        <Experience nextStep={nextStep} prevStep={prevStep} handleChange={handleChange} formData={formData} />
       )}
       {step === 3 && (
-        <Education
-          nextStep={nextStep}
-          prevStep={prevStep}
-          handleChange={handleChange}
-          formData={formData}
-        />
+        <Education nextStep={nextStep} prevStep={prevStep} handleChange={handleChange} formData={formData} />
       )}
       {step === 4 && (
-        <Skills
-          prevStep={prevStep}
-          handleChange={handleChange}
-          formData={formData}
-          handleSubmit={handleSubmit}
-        />
+        <Skills prevStep={prevStep} handleChange={handleChange} formData={formData} handleSubmit={handleSubmit} />
       )}
       {step === 5 && <button onClick={handleSubmit}>Submit Resume</button>}
     </div>
