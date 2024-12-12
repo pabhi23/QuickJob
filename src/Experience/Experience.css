@@ -1,0 +1,137 @@
+/* Experience.css */
+
+.experience-wrapper {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.experience-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.experience-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.experience-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.date-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    margin: 10px 10px 0;
+}
+
+.responsibilities-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 10px;
+}
+
+.add-responsibility-btn {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-responsibility-btn:hover {
+    background-color: #0056b3;
+}
+
+.responsibilities-list {
+    list-style: none;
+    padding: 0;
+    margin: 10px;
+}
+
+.responsibility-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.remove-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    width: 100px
+}
+
+.experience-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 0;
+}
+
+.action-btn {
+    margin: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 100px;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+.experience-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 10px 0;
+}
+
+.experience-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.experience-item strong {
+    font-size: 16px;
+    color: #333;
+}
