@@ -10,33 +10,41 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:5000/api/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
+      if (response.ok) {
+        sessionStorage.setItem("token", data.token);
+        sessionStorage.setItem("firstName", data.firstName);
+        sessionStorage.setItem("lastName", data.lastName);
+        sessionStorage.setItem("registerAs", data.registerAs);
+        sessionStorage.setItem("profilePic", data.profilePic);
+        if (data.registerAs === "employer") {
+          sessionStorage.setItem("employerId", data.user_id);
+        } else {
+          sessionStorage.setItem("user_id", data.user_id);
+        }
 
-    if (response.ok) {
-      sessionStorage.setItem("firstName", data.firstName);
-      sessionStorage.setItem("lastName", data.lastName);
-      sessionStorage.setItem("registerAs", data.registerAs);
+        alert("Login successful");
 
-      const loginEvent = new Event("userLogin");
-      window.dispatchEvent(loginEvent);
-
-      alert("Login successful");
-
-      if (data.registerAs === "employee") {
-        navigate("/");
-      } else if (data.registerAs === "employer") {
-        navigate("/adminDashboard");
+        if (data.registerAs === "employee") {
+          navigate("/");
+        } else if (data.registerAs === "employer") {
+          navigate("/adminDashboard");
+        }
+      } else {
+        alert(data.error || "Login failed");
       }
-    } else {
-      alert(data.error);
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An unexpected error occurred. Please try again later.");
     }
   };
 

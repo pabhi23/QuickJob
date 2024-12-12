@@ -1,0 +1,49 @@
+.personal-input{
+    width: 150px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.heading{
+    color: white;
+    text-align: center;
+    padding: 100px;
+    background-color: #A3CFFF;
+    background-image: url('../../src/img/ResumeBuilder.png');
+    margin:0%;
+}
+
+.tag-line{
+    text-align: center;
+    color: #007BFF;
+}
+
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 70px;
+    justify-content: center; /* Center-aligns inputs within each row */
+
+}
+
+.personal-input {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    flex: 1;
+    padding: 8px;
+    font-size: 1em;
+    border-radius: 10px;
+    width: 100px;
+    max-width: 250px; /* Sets max-width to avoid overly wide inputs */
+    box-sizing: border-box;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;}
+
+.form-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    padding: 0px;
+}
+ 
+

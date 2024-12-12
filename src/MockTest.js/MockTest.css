@@ -1,0 +1,211 @@
+/* Main container for the test */
+/* Main container for the test */
+.mock-test {
+  background-color: #f4f7fa;
+  padding: 40px;
+  max-width: 900px;
+  margin: auto;
+  font-family: 'Arial', sans-serif;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 50px;  /* Ensure space at the bottom */
+}
+
+/* Header section */
+.mock-test-header {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Dropdown container */
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.dropdown {
+  width: 300px;
+  padding: 12px;
+  font-size: 1.2rem;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.dropdown:focus {
+  border-color: #0056b3;
+}
+
+/* Container for questions and options */
+.questions-container {
+  margin-top: 40px;
+}
+
+/* Each question block */
+.question-block {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Question styling - ensuring text is black */
+.question {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+  line-height: 1.4;
+}
+
+/* Options container for horizontally aligned radio buttons */
+.options-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Style each option */
+.option-label {
+  font-size: 1.2rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+input[type='radio'] {
+  margin-right: 10px;
+}
+
+/* Hover effect for options */
+.option-label:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* Submit button container */
+.submit-button-container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.submit-button {
+  padding: 15px 35px;
+  font-size: 1.2rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Result container */
+.result-container {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #007bff;
+}
+
+/* Footer styling */
+footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Ensure content doesn't get hidden behind footer */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.mock-test {
+  flex: 1;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .dropdown-container {
+    flex-direction: column;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .options-container {
+    flex-direction: column;
+  }
+
+  .option-label {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
+}
+.access-denied {
+  text-align: center;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 400px;
+  background-color: #f8f8f8;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.access-denied h1 {
+  color: #ff4d4d;
+  margin-bottom: 10px;
+}
+
+.access-denied p {
+  margin: 10px 0;
+  color: #333;
+}
+
+.payment-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.payment-button:hover {
+  background-color: #0056b3;
+}

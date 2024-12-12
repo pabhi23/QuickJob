@@ -1,0 +1,271 @@
+/* JobAlertsPage.css */
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f4f7fc;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Container for the Job Alerts Page */
+.job-alerts-page-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  text-align: center;
+}
+
+/* Form Styles */
+.alert-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #555;
+}
+
+.input-field {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #007BFF;
+  outline: none;
+  background-color: #fff;
+}
+
+.create-alert-btn {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-alert-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Job Alerts List */
+.job-alerts-list {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.alert-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.alert-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.alert-keywords {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.alert-info {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 8px;
+}
+
+.alert-info strong {
+  color: #2c3e50;
+}
+
+/* Alert Actions Buttons */
+.alert-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.edit-alert-btn,
+.delete-alert-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-alert-btn {
+  background-color: #f39c12;
+}
+
+.edit-alert-btn:hover {
+  background-color: #e67e22;
+}
+
+.delete-alert-btn {
+  background-color: #e74c3c;
+}
+
+.delete-alert-btn:hover {
+  background-color: #c0392b;
+}
+
+.no-alerts {
+  text-align: center;
+  color: #555;
+  font-size: 1.1rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensures modal is above other elements */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.update-alert-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-alert-btn {
+  background-color: #007BFF;
+  color: white;
+}
+
+.update-alert-btn:hover {
+  background-color: #0056b3;
+}
+
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .job-alerts-page-container {
+    padding: 15px;
+  }
+
+  .alert-form {
+    gap: 15px;
+  }
+
+  .alert-card {
+    padding: 15px;
+  }
+
+  .edit-alert-btn,
+  .delete-alert-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .modal-content {
+    padding: 20px;
+  }
+
+  .modal-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .update-alert-btn,
+  .cancel-btn {
+    width: 100%;
+  }
+}

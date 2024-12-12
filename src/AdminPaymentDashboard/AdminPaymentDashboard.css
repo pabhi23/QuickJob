@@ -1,0 +1,39 @@
+.admin-payment-dashboard {
+    padding: 20px;
+  }
+  
+  .payment-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .payment-table th,
+  .payment-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .payment-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .toggle-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .toggle-button.accepted {
+    background-color: green;
+    color: white;
+  }
+  
+  .toggle-button.rejected {
+    background-color: red;
+    color: white;
+  }
+  
