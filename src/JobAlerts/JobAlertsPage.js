@@ -96,7 +96,6 @@ const JobAlertsPage = () => {
 
   return (
     <div className="job-alerts-page">
-      <Seo/>
       <h2>My Job Alerts</h2>
       <div className="job-alerts-container">
         <div className="form-container">
