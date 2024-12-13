@@ -1,0 +1,96 @@
+.saved-jobs-container {
+    position: relative; 
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .saved-jobs-container h2 {
+    margin-top: 80px; 
+    margin-bottom: 20px;
+  }
+  .search-bar {
+    position: absolute; 
+    top: 20px; 
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-start; 
+    z-index: 1; 
+    
+  }
+  
+  .search-input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px; 
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .saved-jobs-table {
+    width: 100%; 
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px; 
+  }
+  .saved-jobs-table th,
+  .saved-jobs-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+  .saved-jobs-table th {
+    background-color: #007bff; 
+    font-weight: bold;
+    color: white; 
+  }
+  
+  .saved-jobs-table td {
+    color: #333;
+  }
+  
+  .saved-jobs-table tr:hover {
+    background-color: #f1f1f1; 
+  }
+  
+  .unsave-button {
+    padding: 8px 15px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 768px) {
+    .saved-jobs-table {
+      width: 95%; 
+    }
+  
+    .saved-jobs-table th,
+    .saved-jobs-table td {
+      padding: 10px;
+      font-size: 12px; 
+    }
+  
+    .unsave-button {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  }
+  
